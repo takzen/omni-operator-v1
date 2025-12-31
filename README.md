@@ -1,162 +1,91 @@
-# OMNI-OPERATOR-V1 // AUTONOMICZNA FABRYKA DYSTRYBUCJI TREŚCI
+# 🤖 takzenai/omni-operator-v1
 
-![Status](https://img.shields.io/badge/STATUS-W_BUDOWIE-8B0000?style=for-the-badge)
-![Python](https://img.shields.io/badge/PYTHON-3.12-003366?style=for-the-badge&logo=python&logoColor=white)
-![Model](https://img.shields.io/badge/MODEL-GEMINI_2.5_FLASH-0047AB?style=for-the-badge&logo=google-gemini&logoColor=white)
-![Framework](https://img.shields.io/badge/FRAMEWORK-PYDANTIC--AI_v1.39.0-006400?style=for-the-badge)
-![Vector DB](https://img.shields.io/badge/VECTOR_DB-QDRANT_v1.16.2-8B4513?style=for-the-badge)
-![Monitoring](https://img.shields.io/badge/MONITORING-LANGFUSE_v2.60.10-4B0082?style=for-the-badge)
-![Backend](https://img.shields.io/badge/BACKEND-FASTAPI_v0.128.0-008B8B?style=for-the-badge)
-![Media](https://img.shields.io/badge/MEDIA-MOVIEPY_v2.2.1-2F4F4F?style=for-the-badge)
-![Compute](https://img.shields.io/badge/COMPUTE-CUDA_13.0_v2.9.1-800020?style=for-the-badge)
+**Autonomiczna fabryka dystrybucji treści. Od surowego MP4 do dominacji w social mediach.**
 
-> "SUWERENNOŚĆ INŻYNIERYJNA ZACZYNA SIĘ TAM, GDZIE KOŃCZĄ SIĘ SUBSKRYPCJE SaaS. BUDUJEMY WŁASNY STOS TECHNOLOGICZNY."
+![STATUS-OPERACYJNY](https://img.shields.io/badge/STATUS-OPERACYJNY-006400?style=for-the-badge)
+![HACKATHON](https://img.shields.io/badge/HACKATHON-GEMINI_API_COMPETITION-blue?style=for-the-badge&logo=google)
+![PYTHON](https://img.shields.io/badge/PYTHON-3.12-003366?style=for-the-badge&logo=python&logoColor=white)
+![MODEL](https://img.shields.io/badge/MODEL-GEMINI_2.5_FLASH-0047AB?style=for-the-badge&logo=google-gemini&logoColor=white)
 
 ---
 
-## 00 // MANIFEST JEDNOSTKI
+## 📜 MANIFEST
 
-**OMNI-OPERATOR-V1** to system klasy **Modern AI Engineering** stworzony w ramach **KUŹNI OPERATORÓW**. Projekt służy do całkowitej automatyzacji procesu produkcji i dystrybucji wideo przy użyciu natywnego stosu technologicznego (Local-First/Sovereign AI).
-
-**KLUCZOWE PARAMETRY:**
-
-- **SILNIK:** Gemini 2.5 Flash (Multimodal Reasoning & Analysis).
-- **LOGIKA:** PydanticAI (Typowani Agenci o wysokiej gęstości danych).
-- **PAMIĘĆ:** Qdrant (Wektorowa baza doświadczeń i stylu).
-- **OBSERWOWALNOŚĆ:** LangFuse
-- **INFRASTRUKTURA:** Python 3.12 + uv + CUDA 13.0.
+Budujemy **suwerenny stos technologiczny**, który eliminuje potrzebę korzystania z SaaS-ów do edycji i dystrybucji wideo. Wykorzystujemy natywną multimodalność **Gemini 2.5 Flash**, aby stworzyć system, który widzi, myśli i operuje bezpośrednio na plikach.
 
 ---
 
-## 01 // ARCHITEKTURA SYSTEMU (CLEAN STACK)
+## 🗺️ ROADMAPA OPERACYJNA (HACKATHON EDITION)
 
-Projekt realizuje wytyczne z sylabusa **TakzenAI HUB**:
+### [ETAP 0] Mobilizacja i Poligon
 
-1. **ANALIZA (M_05):** Multimodalne przetwarzanie obrazu i dźwięku przez SDK Gemini.
-2. **AGENCJA (M_06):** Zarządzanie procesem przez agentów PydanticAI.
-3. **MONTAŻ (M_02):** Automatyczna edycja wideo przez FFmpeg/MoviePy (Python Core).
-4. **PAMIĘĆ (M_09):** RAG w bazie Qdrant do optymalizacji strategii treści.
-5. **DYSTRYBUCJA (M_11):** Protokół MCP do zarządzania lokalnymi plikami i publikacją.
+- **Sovereign Stack Setup**: Konfiguracja Python 3.12 z menedżerem `uv` ✅ **ZAKOŃCZONO**
+- **Definicja Infrastruktury**: `docker-compose.yml` dla Qdrant, Postgres i Langfuse v2 ✅ **ZAKOŃCZONO**
+- **Uruchomienie Węzłów**: Start kontenerów i weryfikacja połączenia ✅ **ZAKOŃCZONO**
 
----
+### [ETAP 1] Multimodalna Analiza (Native Gemini Vision)
 
-## 02 // PROTOKÓŁ INSTALACJI (UV + VS CODE)
+- **Analiza Video-to-JSON**: Wykorzystanie Gemini 2.5 Flash do zrozumienia obrazu i dźwięku bez transkrypcji ✅ **ZAKOŃCZONO**
+- **Ekstrakcja Planu Cięć**: Generowanie raportu `VideoAnalysisReport` ze znacznikami czasu ✅ **ZAKOŃCZONO**
 
-Zalecane podejście inżynierskie przy użyciu menedżera **uv**.
+### [ETAP 2] Agent Strategii i Copywritingu
 
-### 1. KLONOWANIE REPOZYTORIUM
+- **Personalizacja Stylu**: Generowanie opisów pod TikTok, Reels, Shorts i LinkedIn w oparciu o PydanticAI ✅ **ZAKOŃCZONO**
+- **Inżynieria Hashtagów**: System dobierania tagów pod viralowe zasięgi ✅ **ZAKOŃCZONO**
 
-```bash
-git clone https://github.com/takzen/omni-operator-v1.git
-cd omni-operator-v1
-```
+### [ETAP 3] Automatyczna Fabryka Wideo (FFmpeg Core) ⚡ **W TOKU**
 
-### 2. SYNCHRONIZACJA ŚRODOWISKA
+- **Precyzyjny Silnik Cięcia**: Skryptowe wycinanie fragmentów MP4 przez FFmpeg na podstawie instrukcji JSON od Agenta
+- **Branding & Overlay**: Automatyczne napisy, logo i formatowanie do pionu (9:16) bezpośrednio przez kod
 
-```bash
-# uv stworzy .venv i zainstaluje zależności z uv.lock
-uv sync
-```
+### [ETAP 4] Pamięć Długotrwała (Qdrant RAG)
 
-### 3. AKTYWACJA JEDNOSTKI
+- **Baza Wiedzy o Contentcie**: Zapisywanie analiz i wyników w lokalnej bazie Qdrant
+- **Pętla Optymalizacji**: Uczenie systemu stylu twórcy na podstawie historycznych sukcesów (RAG na metadanych)
 
-```bash
-# Windows:
-.\.venv\Scripts\activate
+### [ETAP 5] Dyrygent (FastAPI & Agentic Workers)
 
-# Linux/Mac:
-source .venv/bin/activate
-```
+- **Orkiestracja Workflows**: Budowa asynchronicznego API zarządzającego procesem: UPLOAD → ANALYZE → EDIT → QC
+- **Agentic Quality Control**: Gemini 2.5 Flash weryfikuje zmontowany materiał przed publikacją
+
+### [ETAP 6] Protokół Dystrybucji (MCP Integration)
+
+- **Model Context Protocol**: Użycie MCP, aby Gemini mogło zarządzać lokalnym systemem plików i dystrybucją
+- **Omnipresence**: Automatyczna wysyłka na platformy social media i powiadomienie Operatora na Telegramie
 
 ---
 
-## 03 // KONFIGURACJA CUDA 13.0 (GPU ACCELERATION)
+## 🛠️ STOS TECHNOLOGICZNY (SOVEREIGN STACK)
 
-System wykorzystuje CUDA 13.0 do lokalnych operacji wideo i modeli embeddingowych. Konfiguracja znajduje się w `pyproject.toml`.
-
-| WERSJA    | URL INDEKSU (UV)                         | KOMPATYBILNOŚĆ     |
-| --------- | ---------------------------------------- | ------------------ |
-| CUDA 13.0 | `https://download.pytorch.org/whl/cu130` | RTX 30xx/40xx/50xx |
-| CPU (MAC) | `https://download.pytorch.org/whl/cpu`   | MacBook M1/M2/M3   |
-
-Po zmianie w `pyproject.toml` uruchom: `uv sync`.
+| Komponent          | Technologia          | Rola                                        |
+| ------------------ | -------------------- | ------------------------------------------- |
+| **Mózg AI**        | Gemini 2.5 Flash     | Multimodalna analiza i rozumowanie          |
+| **Agentura**       | PydanticAI (v1.39.0) | Logika agentyczna i typowane wyjścia danych |
+| **Infrastruktura** | Docker & uv          | Zarządzanie kontenerami i pakietami         |
+| **Monitoring**     | Langfuse v2          | Lokalny tracing i kontrola kosztów          |
+| **Pamięć**         | Qdrant               | Wektorowa baza doświadczeń                  |
+| **Media**          | FFmpeg / MoviePy     | Programowy montaż wideo                     |
 
 ---
 
-## 04 // STRUKTURA KATALOGÓW
+## 🚀 DLACZEGO GEMINI 2.5 FLASH?
+
+W ramach hackathonu udowadniamy, że **Gemini 2.5 Flash** to najlepszy model do zadań typu Media-Ops:
+
+1. **Szybkość**: Błyskawiczna analiza klatek wideo pod kątem "hooków"
+2. **Multimodalność**: Brak konieczności używania zewnętrznych modeli do transkrypcji (Whisper). Gemini widzi emocje i dynamikę obrazu
+3. **Context**: Możliwość wrzucenia długich nagrań (podcastów) i pocięcia ich na dziesiątki Shortsów w jednej sesji
+
+---
+
+## 📊 STATUS JEDNOSTKI
 
 ```
-OMNI-OPERATOR-V1/
-├── src/                    # Kod źródłowy systemu
-│   ├── agents/             # Definicje agentów PydanticAI (Gemini 2.5 Flash)
-│   ├── core/               # Schematy danych (Pydantic) i konfiguracja globalna
-│   ├── services/           # Integracje: FFmpeg, Qdrant, Langfuse
-│   └── api/                # Serwery Model Context Protocol (dostęp do plików)
-├── docker/                 #
-├── notebooks/              #
-├── pyproject.toml          # Konfiguracja projektu, zależności i indeksy CUDA
-├── uv.lock                 # Zamrożone wersje bibliotek (generowane przez uv)
-└── docker-compose.yml      # Kontenery infrastruktury (Qdrant, Langfuse, Postgres)
+STATUS: STEP_3_IN_PROGRESS
+ORGANIZACJA: KUŹNIA OPERATORÓW
+CEL: Całkowita suwerenność twórcy treści
 ```
 
 ---
 
-## 05 // Harmonogram operacji (Build-in-Public)
-
-- [x] **Odcinek 0:** Setup infrastruktury (uv, Docker, CUDA 13.0).
-- [x] **Odcinek 1:** Multimodalny wywiad – Gemini 2.5 Flash analizuje wideo.
-- [x] **Odcinek 2:** Agentura typowana – PydanticAI (v1.39.0) w praktyce.
-- [ ] **Odcinek 3:** Kod zamiast CapCuta – Automatyczny montaż przez Python.
-- [ ] **Odcinek 4:** Pamięć długotrwała – Budowa strategii treści w Qdrant.
-- [ ] **Odcinek 5:** Protokół dystrybucji – Automatyzacja "Omnipresence".
-
----
-
-## STATUS: JEDNOSTKA_GOTOWA // DO_DZIAŁANIA
-
-**ORGANIZACJA: KUŹNIA OPERATORÓW**
-
----
-
-## PLIK `pyproject.toml` (KLUCZOWY DLA UV)
-
-To jest serce Twojego setupu. Stwórz go w głównym folderze `omni-operator-v1/`.
-
-```toml
-[project]
-name = "omni-operator-v1"
-version = "0.1.0"
-description = "Autonomiczna fabryka dystrybucji treści - Projekt z Kuźni Operatorów"
-readme = "README.md"
-requires-python = ">=3.12"
-dependencies = [
-    "pydantic-ai>=0.0.18",
-    "google-generativeai>=0.8.3",
-    "fastapi>=0.115.0",
-    "uvicorn>=0.30.0",
-    "qdrant-client>=1.12.0",
-    "langfuse<3.0.0",
-    "moviepy>=1.0.3",
-    "python-dotenv>=1.0.1",
-    "torch",
-    "torchvision",
-    "torchaudio",
-]
-
-[tool.uv]
-managed = true
-
-[[tool.uv.index]]
-name = "pytorch-cu130"
-url = "https://download.pytorch.org/whl/cu130"
-explicit = true
-
-[tool.uv.sources]
-torch = { index = "pytorch-cu130" }
-torchvision = { index = "pytorch-cu130" }
-torchaudio = { index = "pytorch-cu130" }
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-```
+**Zbudowane z 🔥 dla Gemini API Developer Competition**

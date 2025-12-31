@@ -1,7 +1,7 @@
 [project]
 name = "OMNI-OPERATOR-V1"
 version = "0.1.0"
-description = "Autonomiczna fabryka dystrybucji treści - Flagowiec Kuźni Operatorów"
+description = "Autonomiczna fabryka dystrybucji treści - Gemini Hackathon"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

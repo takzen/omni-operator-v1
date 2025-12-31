@@ -1,13 +1,10 @@
-version: "3.8"
-
+version: '3.8'
 services:
-  # LANGFUSE v2: Najstabilniejsza wersja dla lokalnego developmnetu
   langfuse:
     image: langfuse/langfuse:2
     container_name: omni_langfuse
     depends_on:
-      db:
-        condition: service_healthy
+      db: { condition: service_healthy }
     ports:
       - "3000:3000"
     environment:
@@ -17,7 +14,6 @@ services:
       - SALT=mysalt
     restart: always
 
-  # BAZA DANYCH (Tylko Postgres - zero ClickHouse/Redis)
   db:
     image: postgres:16-alpine
     container_name: omni_db
@@ -31,7 +27,6 @@ services:
       timeout: 3s
       retries: 5
 
-  # QDRANT (Twoja pamięć wektorowa)
   qdrant:
     image: qdrant/qdrant:v1.12.0
     container_name: omni_qdrant
