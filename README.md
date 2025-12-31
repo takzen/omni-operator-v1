@@ -38,17 +38,17 @@ Budujemy **suwerenny stos technologiczny**, który eliminuje potrzebę korzystan
 - **Precyzyjny Silnik Cięcia**: Skryptowe wycinanie fragmentów MP4 przez FFmpeg na podstawie instrukcji JSON od Agenta
 - **Branding & Overlay**: Automatyczne napisy, logo i formatowanie do pionu (9:16) bezpośrednio przez kod
 
-### [ETAP 4] Pamięć Długotrwała (Qdrant RAG) ⚡ **W TOKU**
+### [ETAP 4] Pamięć Długotrwała (Qdrant RAG) ✅ **ZAKOŃCZONO**
 
 - **Baza Wiedzy o Contentcie**: Zapisywanie analiz i wyników w lokalnej bazie Qdrant
 - **Pętla Optymalizacji**: Uczenie systemu stylu twórcy na podstawie historycznych sukcesów (RAG na metadanych)
 
-### [ETAP 5] Dyrygent (FastAPI & Agentic Workers)
+### [ETAP 5] Dyrygent (FastAPI & Agentic Workers) ✅ **ZAKOŃCZONO**
 
 - **Orkiestracja Workflows**: Budowa asynchronicznego API zarządzającego procesem: UPLOAD → ANALYZE → EDIT → QC
 - **Agentic Quality Control**: Gemini 2.5 Flash weryfikuje zmontowany materiał przed publikacją
 
-### [ETAP 6] Protokół Dystrybucji (MCP Integration)
+### [ETAP 6] Protokół Dystrybucji (MCP Integration) ⚡ **W TOKU**
 
 - **Model Context Protocol**: Użycie MCP, aby Gemini mogło zarządzać lokalnym systemem plików i dystrybucją
 - **Omnipresence**: Automatyczna wysyłka na platformy social media i powiadomienie Operatora na Telegramie
