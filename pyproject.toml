@@ -1,0 +1,25 @@
+[project]
+name = "OMNI-OPERATOR-V1"
+version = "0.1.0"
+description = "Autonomiczna fabryka dystrybucji treści - Flagowiec Kuźni Operatorów"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic-ai==1.39.0",
+    "google-generativeai>=0.8.6",
+    "fastapi>=0.128.0",
+    "uvicorn>=0.40.0",
+    "qdrant-client>=1.16.2",
+    "langfuse<3.0.0",
+    "moviepy>=2.2.1",
+    "python-dotenv>=1.2.1",
+    "pydantic-settings>=2.4.0",
+    "torch",
+    "torchvision",
+    "torchaudio",
+    "ipywidgets>=8.1.8",
+]
+
+[tool.uv]
+managed = true
+package = false

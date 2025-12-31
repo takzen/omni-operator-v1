@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+.env
+qdrant_data/
+postgres_data/
+*.mp4
+*.srt
+
+# Output
+ROADMAP.md
