@@ -48,7 +48,7 @@ Zalecane podejście inżynierskie przy użyciu menedżera **uv**.
 
 ```bash
 git clone https://github.com/takzen/omni-operator-v1.git
-cd OMNI-OPERATOR-V1
+cd omni-operator-v1
 ```
 
 ### 2. SYNCHRONIZACJA ŚRODOWISKA
@@ -91,7 +91,7 @@ OMNI-OPERATOR-V1/
 │   ├── agents/             # Definicje agentów PydanticAI (Gemini 2.5 Flash)
 │   ├── core/               # Schematy danych (Pydantic) i konfiguracja globalna
 │   ├── services/           # Integracje: FFmpeg, Qdrant, Langfuse
-│   └── mcp/                # Serwery Model Context Protocol (dostęp do plików)
+│   └── api/                # Serwery Model Context Protocol (dostęp do plików)
 ├── docker/                 #
 ├── notebooks/              #
 ├── pyproject.toml          # Konfiguracja projektu, zależności i indeksy CUDA
@@ -103,9 +103,9 @@ OMNI-OPERATOR-V1/
 
 ## 05 // Harmonogram operacji (Build-in-Public)
 
-- [ ] **Odcinek 0:** Setup infrastruktury (uv, Docker, CUDA 13.0).
-- [ ] **Odcinek 1:** Multimodalny wywiad – Gemini 2.5 Flash analizuje wideo.
-- [ ] **Odcinek 2:** Agentura typowana – PydanticAI (v1.39.0) w praktyce.
+- [x] **Odcinek 0:** Setup infrastruktury (uv, Docker, CUDA 13.0).
+- [x] **Odcinek 1:** Multimodalny wywiad – Gemini 2.5 Flash analizuje wideo.
+- [x] **Odcinek 2:** Agentura typowana – PydanticAI (v1.39.0) w praktyce.
 - [ ] **Odcinek 3:** Kod zamiast CapCuta – Automatyczny montaż przez Python.
 - [ ] **Odcinek 4:** Pamięć długotrwała – Budowa strategii treści w Qdrant.
 - [ ] **Odcinek 5:** Protokół dystrybucji – Automatyzacja "Omnipresence".
@@ -120,13 +120,13 @@ OMNI-OPERATOR-V1/
 
 ## PLIK `pyproject.toml` (KLUCZOWY DLA UV)
 
-To jest serce Twojego setupu. Stwórz go w głównym folderze `OMNI-OPERATOR-V1/`.
+To jest serce Twojego setupu. Stwórz go w głównym folderze `omni-operator-v1/`.
 
 ```toml
 [project]
-name = "OMNI-OPERATOR-V1"
+name = "omni-operator-v1"
 version = "0.1.0"
-description = "Autonomiczna fabryka dystrybucji treści - Flagowiec Kuźni Operatorów"
+description = "Autonomiczna fabryka dystrybucji treści - Projekt z Kuźni Operatorów"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
