@@ -9,3 +9,5 @@ postgres_data/
 # Output
 test_video.mp4
 output/
+
+web/
