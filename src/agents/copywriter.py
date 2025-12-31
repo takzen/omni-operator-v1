@@ -6,45 +6,55 @@ from pydantic_ai.models.google import GoogleModel
 from langfuse.decorators import observe
 from src.core.config import settings
 
-# Inicjalizacja środowiska
+# 1. KONFIGURACJA ŚRODOWISKA
+# PydanticAI wymaga GOOGLE_API_KEY w os.environ
 os.environ["GOOGLE_API_KEY"] = settings.gemini_api_key
 
-# --- MODELE DANYCH (M_03) ---
-
+# 2. MODELE DANYCH (Structured Output)
 class PlatformPost(BaseModel):
-    """Treść zoptymalizowana pod konkretny algorytm platformy."""
+    """Pojedyncza treść zoptymalizowana pod algorytm danej platformy."""
     platform: str = Field(description="TikTok, YouTube lub LinkedIn")
-    content: str = Field(description="Pełny tekst posta")
-    hashtags: List[str] = Field(description="Lista hashtagów")
+    content: str = Field(description="Pełna treść posta wraz z hookiem i CTA")
+    hashtags: List[str] = Field(description="Lista celowanych hashtagów")
+
+class ClipStrategy(BaseModel):
+    """Strategia marketingowa dla pojedynczego fragmentu wideo."""
+    clip_index: int = Field(description="Numer porządkowy klipu z analizy")
+    posts: List[PlatformPost] = Field(description="Warianty treści na platformy")
 
 class CampaignBrief(BaseModel):
     """Finalna strategia marketingowa wygenerowana przez Agenta."""
-    overall_strategy: str = Field(description="Kąt narracyjny kampanii")
-    posts: List[PlatformPost] = Field(description="Zestaw postów")
+    overall_strategy: str = Field(description="Główna idea i ton kampanii")
+    clip_strategies: List[ClipStrategy] = Field(description="Szczegółowe posty dla każdego klipu")
 
-# --- KONFIGURACJA AGENTA (M_06) ---
-
+# 3. INICJALIZACJA SILNIKA I AGENTA
+# Używamy modelu gemini-2.5-flash
 model = GoogleModel('gemini-2.5-flash')
+
 copywriter_agent = Agent(
     model=model,
-    output_type=CampaignBrief,
+    output_type=CampaignBrief, # Standard dla Twojej wersji pydantic-ai
     system_prompt=(
         "Jesteś Szefem Strategii Contentowej w KUŹNI OPERATORÓW. "
-        "Na podstawie dostarczonego raportu analitycznego przygotuj kampanię. "
-        "Dostosuj styl: TikTok (hooki), LinkedIn (autorytet), YouTube (SEO). "
+        "Twoim zadaniem jest tworzenie treści social media na podstawie danych technicznych. "
+        "Dla każdego materiału przygotuj: "
+        "1. TikTok: Agresywny hook, szybkie tempo, slang branżowy. "
+        "2. YouTube: Skupienie na wartości edukacyjnej i SEO. "
+        "3. LinkedIn: Merytoryczny wgląd, budowanie autorytetu, storytelling. "
         "Pisz wyłącznie po polsku."
     )
 )
 
-# --- LOGIKA OPERACYJNA ---
-
+# 4. LOGIKA OPERACYJNA
 @observe(name="Agent_Copywriter_Run")
 async def run_copywriting(analysis_data: dict) -> CampaignBrief:
-    """Przetwarza dane analityczne na posty social media."""
-    print("LOG: Generowanie strategii copywriterskiej...")
+    """Transformuje dane analityczne na kompletną kampanię postów."""
+    
+    print("LOG: Gemini 2.5 Flash generuje strategię i posty social media...")
     
     result = await copywriter_agent.run(
-        f"Przygotuj kampanię dla tych danych: {analysis_data}"
+        f"Przygotuj kampanię marketingową na podstawie następujących danych analitycznych: {analysis_data}"
     )
     
+    # Zgodnie z wersją 1.39.0 wynik znajduje się w .output
     return result.output

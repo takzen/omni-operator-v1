@@ -5,7 +5,7 @@
 ![STATUS-OPERACYJNY](https://img.shields.io/badge/STATUS-OPERACYJNY-006400?style=for-the-badge)
 ![HACKATHON](https://img.shields.io/badge/HACKATHON-GEMINI_API_COMPETITION-blue?style=for-the-badge&logo=google)
 ![PYTHON](https://img.shields.io/badge/PYTHON-3.12-003366?style=for-the-badge&logo=python&logoColor=white)
-![MODEL](https://img.shields.io/badge/MODEL-GEMINI_2.5_FLASH-0047AB?style=for-the-badge&logo=google-gemini&logoColor=white)
+![MODEL](https://img.shields.io/badge/MODEL-GEMINI_3_FLASH-0047AB?style=for-the-badge&logo=google-gemini&logoColor=white)
 
 > 🏆 **Zgłoszenie konkursowe**: [Gemini API Developer Competition](https://gemini3.devpost.com/)
 
@@ -26,7 +26,7 @@ Content creatorzy tracą **godziny** na żmudną, manualną pracę:
 
 ## 💡 NASZE ROZWIĄZANIE
 
-**Omni-Operator v1** to suwerenny system AI, który wykorzystuje **Gemini 2.5 Flash** jako multimodalny procesor decyzyjny do:
+**Omni-Operator v1** to suwerenny system AI, który wykorzystuje **Gemini 3 Flash** jako multimodalny procesor decyzyjny do:
 
 - **Multimodalnej analizy (Native Vision)** - Gemini "ogląda" wideo i rozumie kontekst wizualny + audio bez żadnych pośrednich narzędzi (brak potrzeby Whisper/STT).
 - **Inteligentnego montażu** - Automatyczne wykrywanie hooków i generowanie precyzyjnych instrukcji dla silnika FFmpeg.
@@ -43,7 +43,7 @@ Content creatorzy tracą **godziny** na żmudną, manualną pracę:
 graph TD
     User([👤 Operator/User]) -->|Upload MP4| API[🎯 FastAPI Conductor]
 
-    subgraph Brain["🧠 Mózg Agentyczny (Gemini 2.5 Flash + PydanticAI)"]
+    subgraph Brain["🧠 Mózg Agentyczny (Gemini 3 Flash + PydanticAI)"]
         API -->|Trigger| Analyst[📊 Agent Analityk]
         Analyst -->|Extract Hooks JSON| Copywriter[✍️ Agent Copywriter]
         Copywriter -->|Generate Posts| Memory[(🗄️ Qdrant Vector DB)]
@@ -74,7 +74,7 @@ graph TD
 
 ---
 
-## 🚀 DLACZEGO GEMINI 2.5 FLASH?
+## 🚀 DLACZEGO GEMINI 3 FLASH?
 
 Wybraliśmy ten model jako fundament fabryki ze względu na unikalne cechy kluczowe w Media-Ops:
 
@@ -100,7 +100,7 @@ Wybraliśmy ten model jako fundament fabryki ze względu na unikalne cechy klucz
 
 | Komponent          | Technologia      | Rola                                        |
 | ------------------ | ---------------- | ------------------------------------------- |
-| **Mózg AI**        | Gemini 2.5 Flash | Multimodalna analiza i reasoning            |
+| **Mózg AI**        | Gemini 3 Flash   | Multimodalna analiza i reasoning            |
 | **Agentura**       | PydanticAI       | Logika agentyczna i typowane wyjścia danych |
 | **Infrastruktura** | Docker & uv      | Zarządzanie kontenerami i pakietami         |
 | **Monitoring**     | Langfuse v2      | Lokalny tracing i kontrola kosztów          |
@@ -115,7 +115,7 @@ Wybraliśmy ten model jako fundament fabryki ze względu na unikalne cechy klucz
 ```
 INPUT:  Nagranie 10-minutowe (prezentacja projektu.mp4)
 
-↓ [Agent Analityk - Gemini 2.5 Flash]
+↓ [Agent Analityk - Gemini 3 Flash]
 ├─ Analizuje klatki i audio (Video-to-JSON)
 └─ Output: Plan 3 klipów (np. 00:12-00:45, 03:00-03:20...)
 
@@ -179,7 +179,7 @@ uv run python src/api/main.py
 
 ## 🏆 GEMINI API DEVELOPER COMPETITION
 
-Projekt udowadnia, że **Gemini 2.5 Flash** jest gotowy do roli autonomicznego "Operatora" w złożonych systemach Media-Ops.
+Projekt udowadnia, że **Gemini 3 Flash** jest gotowy do roli autonomicznego "Operatora" w złożonych systemach Media-Ops.
 
 ---
 

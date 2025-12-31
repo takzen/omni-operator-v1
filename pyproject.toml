@@ -6,7 +6,6 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "pydantic-ai==1.39.0",
-    "google-generativeai>=0.8.6",
     "fastapi>=0.128.0",
     "uvicorn>=0.40.0",
     "qdrant-client>=1.16.2",
@@ -17,6 +16,7 @@ dependencies = [
     "torch",
     "torchvision",
     "torchaudio",
+    "google-genai>=1.56.0",
 ]
 
 [tool.uv]
