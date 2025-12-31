@@ -7,6 +7,5 @@ postgres_data/
 *.srt
 
 # Output
-ROADMAP.md
 test_video.mp4
 output/

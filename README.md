@@ -68,6 +68,27 @@ Budujemy **suwerenny stos technologiczny**, który eliminuje potrzebę korzystan
 
 ---
 
+graph TD
+User([Operator/User]) -- "Upload MP4" --> API[FastAPI Conductor]
+
+    subgraph "Mózg Agentyczny (Gemini 2.5 Flash + PydanticAI)"
+        API -- "Trigger" --> Analyst[Agent Analityk]
+        Analyst -- "Extract Hooks (JSON)" --> Copywriter[Agent Copywriter]
+        Copywriter -- "Generate Posts" --> Memory[(Qdrant Vector DB)]
+    end
+
+    subgraph "Fabryka Mediów"
+        Copywriter -- "Instructions" --> VideoEngine[FFmpeg / MoviePy]
+        VideoEngine -- "Render Clips" --> Storage[Local File System]
+    end
+
+    subgraph "Egzoszkielet MCP"
+        Storage -- "Sort/Move" --> Dispatcher[Agent Dystrybucji]
+        Dispatcher -- "Organize" --> FinalOutput[/Folder: TikTok, YouTube, LinkedIn/]
+    end
+
+    API -- "Tracing & Costs" --> Langfuse[(Langfuse v2)]
+
 ## 🚀 DLACZEGO GEMINI 2.5 FLASH?
 
 W ramach hackathonu udowadniamy, że **Gemini 2.5 Flash** to najlepszy model do zadań typu Media-Ops:
