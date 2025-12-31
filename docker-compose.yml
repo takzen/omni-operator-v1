@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   langfuse:
     image: langfuse/langfuse:2
@@ -21,6 +21,10 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=langfuse
+    ports:
+      - "5433:5432" # Mapujemy port 5433 na Windowsie do 5432 w kontenerze
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 3s
