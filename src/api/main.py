@@ -42,9 +42,17 @@ app.add_middleware(
 )
 
 # Tworzymy foldery na dane, jeśli nie istnieją
-os.makedirs("temp", exist_ok=True)
-# Montujemy folder publiczny frontendu, aby serwować gotowe wideo
-os.makedirs(os.path.join("web", "public", "output"), exist_ok=True)
+root_path_obj = Path(__file__).resolve().parent.parent.parent
+temp_dir = root_path_obj / "temp"
+output_dir = root_path_obj / "web" / "public" / "output"
+
+temp_dir.mkdir(parents=True, exist_ok=True)
+output_dir.mkdir(parents=True, exist_ok=True)
+
+print(f"LOG: Serving static files from: {output_dir}")
+
+# SŁUŻYMY PLIKAMI STATYCZNYMI (GŁÓWNIE WIDEO)
+app.mount("/output", StaticFiles(directory=str(output_dir)), name="output")
 
 # Baza zadań w pamięci RAM
 jobs = {}
@@ -53,13 +61,13 @@ jobs = {}
 
 @app.get("/")
 async def health_check():
-    return {"status": "OPERATIONAL", "engine": "GEMINI 2.5 FLASH"}
+    return {"status": "OPERATIONAL", "engine": "GEMINI 3 FLASH PREVIEW"}
 
 @app.post("/upload")
 async def start_mission(background_tasks: BackgroundTasks, file: UploadFile = File(...)):
     """Przyjmuje plik wideo i inicjuje asynchroniczny workflow."""
     job_id = str(uuid.uuid4())[:8]
-    temp_path = f"temp/{job_id}_{file.filename}"
+    temp_path = os.path.join(temp_dir, f"{job_id}_{file.filename}")
     
     # Zapis pliku na dysku serwera
     with open(temp_path, "wb") as buffer:
@@ -90,7 +98,7 @@ async def get_status(job_id: str):
 async def execute_workflow(job_id: str, video_path: str):
     """Orkiestracja wszystkich modułów systemu."""
     try:
-        # KROK 1: Multimodalna Analiza Gemini 2.5 Flash
+        # KROK 1: Multimodalna Analiza Gemini 3 Flash Preview
         print(f"LOG [{job_id}]: Start analizy wizualnej...")
         analysis_report = await run_analysis(video_path)
         
@@ -105,7 +113,8 @@ async def execute_workflow(job_id: str, video_path: str):
         video_results = process_video_segments(
             video_path, 
             analysis_report.model_dump()['clips'], 
-            job_id
+            job_id,
+            output_root=output_dir
         )
         
         # FINALIZACJA: Zapisanie wyników dla frontendu

@@ -9,10 +9,12 @@ def timestamp_to_seconds(ts: str) -> float:
     except:
         return 0.0
 
-def process_video_segments(source_path: str, clips_data: list, job_id: str):
-    """Wycina klipy i zapisuje je w folderze publicznym Next.js."""
-    # Ścieżka do folderu publicznego Twojego frontendu
-    output_base = os.path.join("web", "public", "output", job_id)
+def process_video_segments(source_path: str, clips_data: list, job_id: str, output_root: str = None):
+    """Wycina klipy i zapisuje je w folderze publicznym."""
+    if output_root is None:
+        output_root = os.path.join("web", "public", "output")
+        
+    output_base = os.path.join(output_root, job_id)
     os.makedirs(output_base, exist_ok=True)
     
     generated_files = []
@@ -28,6 +30,13 @@ def process_video_segments(source_path: str, clips_data: list, job_id: str):
             target_path = os.path.join(output_base, file_name)
             
             print(f"LOG: Renderowanie fragmentu {i}...")
+            
+            # ZABEZPIECZENIE: Nie wycinamy poza czas trwania filmu
+            end_s = min(end_s, video.duration)
+            if start_s >= end_s:
+                print(f"WARN: Segment {i} jest nieprawidłowy (start >= end). Pomijam.")
+                continue
+                
             # MoviePy v2.x standard
             new_clip = video.subclipped(start_s, end_s)
             new_clip.write_videofile(target_path, codec="libx264", audio_codec="aac", logger=None)

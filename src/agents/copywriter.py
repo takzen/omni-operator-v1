@@ -28,8 +28,8 @@ class CampaignBrief(BaseModel):
     clip_strategies: List[ClipStrategy] = Field(description="Szczegółowe posty dla każdego klipu")
 
 # 3. INICJALIZACJA SILNIKA I AGENTA
-# Używamy modelu gemini-2.5-flash
-model = GoogleModel('gemini-2.5-flash')
+# Używamy modelu gemini-3-flash-preview
+model = GoogleModel('gemini-3-flash-preview')
 
 copywriter_agent = Agent(
     model=model,
@@ -50,7 +50,7 @@ copywriter_agent = Agent(
 async def run_copywriting(analysis_data: dict) -> CampaignBrief:
     """Transformuje dane analityczne na kompletną kampanię postów."""
     
-    print("LOG: Gemini 2.5 Flash generuje strategię i posty social media...")
+    print("LOG: Gemini 3 Flash Preview generuje strategię i posty social media...")
     
     result = await copywriter_agent.run(
         f"Przygotuj kampanię marketingową na podstawie następujących danych analitycznych: {analysis_data}"
