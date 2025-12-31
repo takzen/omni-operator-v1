@@ -17,7 +17,6 @@ dependencies = [
     "torch",
     "torchvision",
     "torchaudio",
-    "ipywidgets>=8.1.8",
 ]
 
 [tool.uv]

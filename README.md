@@ -2,10 +2,10 @@
 
 ![Status](https://img.shields.io/badge/STATUS-W_BUDOWIE-8B0000?style=for-the-badge)
 ![Python](https://img.shields.io/badge/PYTHON-3.12-003366?style=for-the-badge&logo=python&logoColor=white)
-![Model](https://img.shields.io/badge/MODEL-GEMINI_2.5_FLASH_v0.8.6-0047AB?style=for-the-badge&logo=google-gemini&logoColor=white)
+![Model](https://img.shields.io/badge/MODEL-GEMINI_2.5_FLASH-0047AB?style=for-the-badge&logo=google-gemini&logoColor=white)
 ![Framework](https://img.shields.io/badge/FRAMEWORK-PYDANTIC--AI_v1.39.0-006400?style=for-the-badge)
 ![Vector DB](https://img.shields.io/badge/VECTOR_DB-QDRANT_v1.16.2-8B4513?style=for-the-badge)
-![Monitoring](https://img.shields.io/badge/MONITORING-LANGFUSE_v3.11.2-4B0082?style=for-the-badge)
+![Monitoring](https://img.shields.io/badge/MONITORING-LANGFUSE_v2.60.10-4B0082?style=for-the-badge)
 ![Backend](https://img.shields.io/badge/BACKEND-FASTAPI_v0.128.0-008B8B?style=for-the-badge)
 ![Media](https://img.shields.io/badge/MEDIA-MOVIEPY_v2.2.1-2F4F4F?style=for-the-badge)
 ![Compute](https://img.shields.io/badge/COMPUTE-CUDA_13.0_v2.9.1-800020?style=for-the-badge)
@@ -23,7 +23,8 @@
 - **SILNIK:** Gemini 2.5 Flash (Multimodal Reasoning & Analysis).
 - **LOGIKA:** PydanticAI (Typowani Agenci o wysokiej gęstości danych).
 - **PAMIĘĆ:** Qdrant (Wektorowa baza doświadczeń i stylu).
-- **INFRASTRUKTURA:** Python 3.11 + uv + CUDA 13.0.
+- **OBSERWOWALNOŚĆ:** LangFuse
+- **INFRASTRUKTURA:** Python 3.12 + uv + CUDA 13.0.
 
 ---
 
@@ -46,7 +47,7 @@ Zalecane podejście inżynierskie przy użyciu menedżera **uv**.
 ### 1. KLONOWANIE REPOZYTORIUM
 
 ```bash
-git clone https://github.com/KUZNIA-OPERATOROW/OMNI-OPERATOR-V1.git
+git clone https://github.com/takzen/omni-operator-v1.git
 cd OMNI-OPERATOR-V1
 ```
 
@@ -91,6 +92,8 @@ OMNI-OPERATOR-V1/
 │   ├── core/               # Schematy danych (Pydantic) i konfiguracja globalna
 │   ├── services/           # Integracje: FFmpeg, Qdrant, Langfuse
 │   └── mcp/                # Serwery Model Context Protocol (dostęp do plików)
+├── docker/                 #
+├── notebooks/              #
 ├── pyproject.toml          # Konfiguracja projektu, zależności i indeksy CUDA
 ├── uv.lock                 # Zamrożone wersje bibliotek (generowane przez uv)
 └── docker-compose.yml      # Kontenery infrastruktury (Qdrant, Langfuse, Postgres)
@@ -100,8 +103,8 @@ OMNI-OPERATOR-V1/
 
 ## 05 // Harmonogram operacji (Build-in-Public)
 
-- [x] **Odcinek 0:** Setup infrastruktury (uv, Docker, CUDA 13.0).
-- [x] **Odcinek 1:** Multimodalny wywiad – Gemini 2.5 Flash analizuje wideo.
+- [ ] **Odcinek 0:** Setup infrastruktury (uv, Docker, CUDA 13.0).
+- [ ] **Odcinek 1:** Multimodalny wywiad – Gemini 2.5 Flash analizuje wideo.
 - [ ] **Odcinek 2:** Agentura typowana – PydanticAI (v1.39.0) w praktyce.
 - [ ] **Odcinek 3:** Kod zamiast CapCuta – Automatyczny montaż przez Python.
 - [ ] **Odcinek 4:** Pamięć długotrwała – Budowa strategii treści w Qdrant.
@@ -132,7 +135,7 @@ dependencies = [
     "fastapi>=0.115.0",
     "uvicorn>=0.30.0",
     "qdrant-client>=1.12.0",
-    "langfuse>=2.50.0",
+    "langfuse<3.0.0",
     "moviepy>=1.0.3",
     "python-dotenv>=1.0.1",
     "torch",
