@@ -33,12 +33,12 @@ Budujemy **suwerenny stos technologiczny**, który eliminuje potrzebę korzystan
 - **Personalizacja Stylu**: Generowanie opisów pod TikTok, Reels, Shorts i LinkedIn w oparciu o PydanticAI ✅ **ZAKOŃCZONO**
 - **Inżynieria Hashtagów**: System dobierania tagów pod viralowe zasięgi ✅ **ZAKOŃCZONO**
 
-### [ETAP 3] Automatyczna Fabryka Wideo (FFmpeg Core) ⚡ **W TOKU**
+### [ETAP 3] Automatyczna Fabryka Wideo (FFmpeg Core) ✅ **ZAKOŃCZONO**
 
 - **Precyzyjny Silnik Cięcia**: Skryptowe wycinanie fragmentów MP4 przez FFmpeg na podstawie instrukcji JSON od Agenta
 - **Branding & Overlay**: Automatyczne napisy, logo i formatowanie do pionu (9:16) bezpośrednio przez kod
 
-### [ETAP 4] Pamięć Długotrwała (Qdrant RAG)
+### [ETAP 4] Pamięć Długotrwała (Qdrant RAG) ⚡ **W TOKU**
 
 - **Baza Wiedzy o Contentcie**: Zapisywanie analiz i wyników w lokalnej bazie Qdrant
 - **Pętla Optymalizacji**: Uczenie systemu stylu twórcy na podstawie historycznych sukcesów (RAG na metadanych)
