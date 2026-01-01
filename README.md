@@ -103,14 +103,14 @@ graph TD
 ## 🛠️ STOS TECHNOLOGICZNY
 
 | Komponent          | Technologia          | Rola                                        |
-20. | ------------------ | -------------------- | ------------------------------------------- |
-103. | **Mózg AI**        | Gemini 3 Flash Prev  | Multimodalna analiza i reasoning            |
-104. | **Agentura**       | PydanticAI           | Logika agentyczna i typowane wyjścia danych |
-105. | **Frontend**       | Next.js 16 + Tailwind 4 | Interfejs Tactical HUD                    |
-106. | **Infrastruktura** | Docker & uv          | Zarządzanie kontenerami i pakietami         |
-107. | **Monitoring**     | Langfuse v2          | Lokalny tracing i kontrola kosztów          |
-108. | **Baza Wektorowa** | Qdrant               | Pamięć doświadczeń                          |
-109. | **Serwer API**     | FastAPI              | Dyrygent całego workflowu                   |
+| ------------------ | -------------------- | ------------------------------------------- |
+| **Mózg AI**        | Gemini 3 Flash Prev  | Multimodalna analiza i reasoning            |
+| **Agentura**       | PydanticAI           | Logika agentyczna i typowane wyjścia danych |
+| **Frontend**       | Next.js 16 + Tailwind 4 | Interfejs Tactical HUD                    |
+| **Infrastruktura** | Docker & uv          | Zarządzanie kontenerami i pakietami         |
+| **Monitoring**     | Langfuse v2          | Lokalny tracing i kontrola kosztów          |
+| **Baza Wektorowa** | Qdrant               | Pamięć doświadczeń                          |
+| **Serwer API**     | FastAPI              | Dyrygent całego workflowu                   |
 
 ---
 
