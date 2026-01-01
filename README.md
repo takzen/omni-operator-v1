@@ -1,4 +1,4 @@
-# 🤖 takzen/omni-operator-v1
+# 🤖 omni-operator-v1
 
 **Autonomiczna fabryka dystrybucji treści. Od surowego MP4 do dominacji w social mediach.**
 
@@ -100,13 +100,11 @@ graph TD
 
 ### FAZA 01: GOTOWOŚĆ_OPERACYJNA (MISSION_READY)
 
-> _Stan gotowości systemu przed przesłaniem materiału źródłowego._
-> ![Mission Ready](./docs/image/before.webp)
+> _Stan gotowości systemu przed przesłaniem materiału źródłowego._ > ![Mission Ready](./docs/image/before.webp)
 
 ### FAZA 02: HANGAR_ZASOBÓW (ASSET_HANGAR)
 
-> _Podgląd wygenerowanych treści, strategii social media i zmontowanych klipów._
-> ![Asset Hangar](./docs/image/before.webp)
+> _Podgląd wygenerowanych treści, strategii social media i zmontowanych klipów._ > ![Asset Hangar](./docs/image/after.webp)
 
 ---
 
