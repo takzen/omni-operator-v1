@@ -78,7 +78,7 @@ export default function Home() {
                   Core Engine
                 </span>
                 <span className="text-xs font-bold text-green-500">
-                  GEMINI_3_FLASH
+                  GEMINI_3_FLASH_PREVIEW
                 </span>
               </div>
             </div>
@@ -319,9 +319,8 @@ export default function Home() {
             {[...Array(12)].map((_, i) => (
               <div
                 key={i}
-                className={`w-0.5 h-4 ${
-                  i % 3 === 0 ? "bg-red-700" : "bg-zinc-800"
-                }`}
+                className={`w-0.5 h-4 ${i % 3 === 0 ? "bg-red-700" : "bg-zinc-800"
+                  }`}
               />
             ))}
           </div>

@@ -1,15 +1,29 @@
-# 🤖 takzenai/omni-operator-v1
+# 🤖 takzen/omni-operator-v1
 
 **Autonomiczna fabryka dystrybucji treści. Od surowego MP4 do dominacji w social mediach.**
 
 ![STATUS-OPERACYJNY](https://img.shields.io/badge/STATUS-OPERACYJNY-FF0000?style=for-the-badge)
-![HACKATHON](https://img.shields.io/badge/HACKATHON-GEMINI_API_COMPETITION-blue?style=for-the-badge&logo=google)
-![PYTHON](https://img.shields.io/badge/PYTHON-3.12-003366?style=for-the-badge&logo=python&logoColor=white)
-![MODEL](https://img.shields.io/badge/MODEL-GEMINI_3_FLASH_PREVIEW-0047AB?style=for-the-badge&logo=google-gemini&logoColor=white)
+![HACKATHON](https://img.shields.io/badge/HACKATHON-GEMINI_3_HACKATHON-blue?style=for-the-badge&logo=google)
+![PYTHON](https://img.shields.io/badge/PYTHON-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![SDK](https://img.shields.io/badge/GOOGLE_GENAI-1.56.0-0047AB?style=for-the-badge&logo=google-gemini&logoColor=white)
+![PYDANTIC_AI](https://img.shields.io/badge/PYDANTIC_AI-1.39.0-FFB100?style=for-the-badge&logo=pydantic&logoColor=white)
+![NEXT](https://img.shields.io/badge/NEXT.JS-16.1.1-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![QDRANT](https://img.shields.io/badge/QDRANT-1.16.3-F50057?style=for-the-badge&logo=qdrant&logoColor=white)
+![LANGFUSE](https://img.shields.io/badge/LANGFUSE-2.x-000000?style=for-the-badge&logo=langfuse&logoColor=white)
 
 > 🏆 **Zgłoszenie konkursowe**: [Gemini API Developer Competition](https://gemini3.devpost.com/)
 
 ---
+
+### 📝 ZGŁOSZENIE: GEMINI 3 HACKATHON
+
+**Opis Integracji Gemini (~200 słów):**
+Omni-Operator V1 to autonomiczna fabryka mediów napędzana w całości przez **Gemini 3 Flash Preview**. Aplikacja wykorzystuje najnowocześniejszą **natywną multimodalność** Gemini do bezpośredniej analizy wideo, eliminując potrzebę stosowania tradycyjnej transkrypcji czy osobnych modeli wizyjnych. Dzięki "oglądaniu" surowych plików MP4, Gemini 3 Flash identyfikuje momenty o wysokim potencjale viralowym, korzystając ze swoich zaawansowanych zdolności **zakotwiczenia przestrzenno-czasowego (Spatial & Temporal Grounding)**.
+
+Integracja ta stanowi serce naszej architektury "Agentycznego Mózgu". Wykorzystujemy **ogromne okno kontekstowe** Gemini 3 Flash do analizy całych nagrań w jednym przebiegu, co gwarantuje zachowanie kontekstu i ciągłości narracyjnej we wszystkich generowanych materiałach. Co więcej, używamy **strukturyzowanych danych wyjściowych (response_schema)**, aby przetłumaczyć rozumowanie AI bezpośrednio na instrukcje techniczne dla naszego silnika edycji opartego na FFmpeg. Ten płynny pomost między merytorycznym zrozumieniem multimodalnym a precyzyjną manipulacją plikami pozwala Omni-Operatorowi przekształcić surowe wideo w zoptymalizowane klipy na TikToka, YouTube'a i LinkedIna w zaledwie kilka sekund. Krótko mówiąc, Gemini 3 Flash pełni rolę suwerennego procesora poznawczego, umożliwiając poziom automatyzacji i szybkości, który wcześniej był nieosiągalny.
+
+---
+
 
 ## 🎯 PROBLEM, KTÓRY ROZWIĄZUJEMY
 
