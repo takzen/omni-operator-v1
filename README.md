@@ -66,15 +66,15 @@ graph TD
     class Memory,Storage,Langfuse storageNode
 ```
 
----
+## � MISSION VISUALS (TACTICAL HUD)
 
-## 🚀 NOWY INTERFEJS: TACTICAL HUD
+### FAZA 01: GOTOWOŚĆ_OPERACYJNA (MISSION_READY)
+> *Stan gotowości systemu przed przesłaniem materiału źródłowego.*
+![Mission Ready](./docs/image/before.webp)
 
-Odkryj potęgę **Sovereign Content Stack** przez nasz odnowiony interfejs:
-- **Glassmorphism Design**: Rozmyte panele, neonowe akcenty i nowoczesna typografia (`JetBrains Mono`).
-- **Real-time Mission Control**: Animowany skaner biometryczny podczas przesyłania plików.
-- **Asset Hangar**: Galeria wygenerowanych nagrań z podglądem wideo i gotowymi postami social media.
-- **Operational Logs**: Strumień danych technicznych informujący o każdym kroku agentów AI.
+### FAZA 02: HANGAR_ZASOBÓW (ASSET_HANGAR)
+> *Podgląd wygenerowanych treści, strategii social media i zmontowanych klipów.*
+![Asset Hangar](./docs/image/before.webp)
 
 ---
 

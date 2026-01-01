@@ -29,6 +29,28 @@ export default function MissionControl({
   const [file, setFile] = useState<File | null>(null);
   const [jobId, setJobId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [thought, setThought] = useState<string>("SYSTEM_READY_FOR_DEPLOYMENT");
+
+  const thoughts = [
+    "ANALYZING_VISUAL_FREQUENCIES...",
+    "EXTRACTING_SEMANTIC_NODES...",
+    "IDENTIFYING_VIRAL_PEAKS...",
+    "OPTIMIZING_TIKTOK_WEIGHTS...",
+    "GENERATING_NARRATIVE_HOOKS...",
+    "FFMPEG_BITRATE_STABILIZATION...",
+    "RECONSTRUCTING_SCENE_METADATA...",
+    "SYNCING_NEURAL_LINK_API...",
+    "VALIDATING_PYDANTIC_SCHEMAS..."
+  ];
+
+  React.useEffect(() => {
+    if (status !== "idle" && status !== "completed" && status !== "failed") {
+      const interval = setInterval(() => {
+        setThought(thoughts[Math.floor(Math.random() * thoughts.length)]);
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [status]);
 
   const startMission = async () => {
     if (!file) return;
@@ -195,6 +217,12 @@ export default function MissionControl({
             <div className="flex justify-between text-zinc-600">
               <span>GEMINI_LINK</span>
               <span className="text-red-700 font-bold animate-pulse">OPTIMIZED</span>
+            </div>
+            <div className="mt-4 pt-4 border-t border-white/5 flex flex-col gap-1">
+              <span className="text-[9px] text-zinc-600 font-black uppercase tracking-widest leading-none">Thought_Stream:</span>
+              <span className="text-red-500 font-black text-xs animate-pulse italic">
+                {thought}
+              </span>
             </div>
           </div>
 

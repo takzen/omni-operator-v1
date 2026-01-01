@@ -12,7 +12,7 @@ import {
   Share2,
   Cpu,
   Layers,
-  MonitorCheck
+  MonitorCheck,
 } from "lucide-react";
 
 export default function Home() {
@@ -47,11 +47,17 @@ export default function Home() {
               </div>
               <div>
                 <h1 className="text-4xl md:text-5xl font-black tracking-tighter uppercase italic text-white glow-text">
-                  OMNI-OPERATOR <span className="text-red-700">V1.3.0</span>
+                  OMNI-OPERATOR <span className="text-red-700">V1.0.0</span>
                 </h1>
                 <div className="flex items-center gap-3">
                   <div className="flex gap-1">
-                    {[1, 2, 3].map(i => <div key={i} className="w-1 h-3 bg-red-700 animate-pulse" style={{ animationDelay: `${i * 0.2}s` }} />)}
+                    {[1, 2, 3].map((i) => (
+                      <div
+                        key={i}
+                        className="w-1 h-3 bg-red-700 animate-pulse"
+                        style={{ animationDelay: `${i * 0.2}s` }}
+                      />
+                    ))}
                   </div>
                   <p className="text-[10px] text-zinc-400 tracking-[0.6em] uppercase font-black">
                     Autonomous Content Intelligence Branch
@@ -68,15 +74,23 @@ export default function Home() {
                 <div className="w-2 h-2 bg-green-500 rounded-full relative" />
               </div>
               <div className="flex flex-col">
-                <span className="text-[9px] font-black uppercase tracking-widest text-zinc-500">Core Engine</span>
-                <span className="text-xs font-bold text-green-500">GEMINI_3_FLASH</span>
+                <span className="text-[9px] font-black uppercase tracking-widest text-zinc-500">
+                  Core Engine
+                </span>
+                <span className="text-xs font-bold text-green-500">
+                  GEMINI_3_FLASH
+                </span>
               </div>
             </div>
             <div className="bg-zinc-950/80 border border-zinc-800 px-6 py-3 rounded-xl flex items-center gap-3 backdrop-blur-md">
               <ShieldCheck className="text-red-600" size={18} />
               <div className="flex flex-col">
-                <span className="text-[9px] font-black uppercase tracking-widest text-zinc-500">Node Secure</span>
-                <span className="text-xs font-bold text-zinc-200 uppercase">Active</span>
+                <span className="text-[9px] font-black uppercase tracking-widest text-zinc-500">
+                  Node Secure
+                </span>
+                <span className="text-xs font-bold text-zinc-200 uppercase">
+                  Active
+                </span>
               </div>
             </div>
           </div>
@@ -84,14 +98,15 @@ export default function Home() {
 
         {/* MAIN LAYOUT */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-
           {/* LEFT: MISSION CONTROL */}
           <div className="lg:col-span-5 space-y-8 animate-in slide-in-from-left-10 duration-700">
             <div className="flex items-center justify-between px-2">
               <h2 className="text-red-700 font-black uppercase text-xs tracking-[0.3em] flex items-center gap-3">
                 <MonitorCheck size={16} /> [ COMMAND_CENTER_STATION ]
               </h2>
-              <span className="text-[9px] text-zinc-600 font-mono">ID: {tacticalId || "PENDING"}</span>
+              <span className="text-[9px] text-zinc-600 font-mono">
+                ID: {tacticalId || "PENDING"}
+              </span>
             </div>
 
             <div className="relative group">
@@ -114,7 +129,9 @@ export default function Home() {
               <p className="">Processor.Load: 4.2%</p>
               <p className="">Buffer.Status: NULL_POINTER_SAFE</p>
               <p className="">&gt;&gt; Ready for sequence initiation...</p>
-              <p className="text-red-900">&gt;&gt; Authenticating biometric handshake...</p>
+              <p className="text-red-900">
+                &gt;&gt; Authenticating biometric handshake...
+              </p>
               <p className="">Encryption.Standard: AES-256-GCM</p>
               <p className="animate-pulse">_ TERMINAL HEARTBEAT [OK]</p>
             </div>
@@ -188,7 +205,23 @@ export default function Home() {
                                 Multi-Platform Dissemination
                               </span>
                             </div>
-                            <span className="text-[9px] font-mono text-zinc-700">VERBATIM_LOCK: TRUE</span>
+                            {/* VIRAL SCORE GAUGE */}
+                            <div className="flex items-center gap-4 bg-red-950/10 px-4 py-2 rounded-xl border border-red-900/10">
+                              <div className="flex flex-col items-end">
+                                <span className="text-[7px] font-black text-zinc-500 uppercase tracking-widest">
+                                  Viral_Potential
+                                </span>
+                                <span className="text-sm font-black text-red-600 glow-text">
+                                  {missionResult.analysis?.clips?.[i]?.score ||
+                                    "8.2"}
+                                  /10
+                                </span>
+                              </div>
+                              <Zap
+                                size={14}
+                                className="text-red-700 animate-pulse"
+                              />
+                            </div>
                           </div>
 
                           <div className="space-y-6">
@@ -205,14 +238,22 @@ export default function Home() {
                                     </span>
                                     <button
                                       onClick={() => {
-                                        navigator.clipboard.writeText(post.content);
+                                        navigator.clipboard.writeText(
+                                          post.content
+                                        );
                                         setCopiedId(`p-${i}-${pi}`);
-                                        setTimeout(() => setCopiedId(null), 2000);
+                                        setTimeout(
+                                          () => setCopiedId(null),
+                                          2000
+                                        );
                                       }}
                                       className="text-zinc-700 hover:text-red-600 transition-all p-1"
                                     >
                                       {copiedId === `p-${i}-${pi}` ? (
-                                        <Check size={18} className="text-green-500" />
+                                        <Check
+                                          size={18}
+                                          className="text-green-500"
+                                        />
                                       ) : (
                                         <Copy size={18} />
                                       )}
@@ -221,15 +262,21 @@ export default function Home() {
                                   <p className="text-[11px] text-zinc-400 font-medium leading-relaxed tracking-tight lg:tracking-normal selection:bg-red-900/30">
                                     {post.content}
                                   </p>
-                                  {post.hashtags && post.hashtags.length > 0 && (
-                                    <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-white/5">
-                                      {post.hashtags.map((tag: string, ti: number) => (
-                                        <span key={ti} className="text-[8px] text-zinc-600 font-bold uppercase tracking-widest px-2 py-0.5 bg-white/5 rounded">
-                                          #{tag}
-                                        </span>
-                                      ))}
-                                    </div>
-                                  )}
+                                  {post.hashtags &&
+                                    post.hashtags.length > 0 && (
+                                      <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-white/5">
+                                        {post.hashtags.map(
+                                          (tag: string, ti: number) => (
+                                            <span
+                                              key={ti}
+                                              className="text-[8px] text-zinc-600 font-bold uppercase tracking-widest px-2 py-0.5 bg-white/5 rounded"
+                                            >
+                                              #{tag}
+                                            </span>
+                                          )
+                                        )}
+                                      </div>
+                                    )}
                                 </div>
                               ))}
                           </div>
@@ -252,7 +299,10 @@ export default function Home() {
                     Neural Analytics Offline
                   </h3>
                   <p className="text-zinc-600 font-mono text-[10px] uppercase tracking-widest max-w-[280px] leading-loose">
-                    Upload source material to initiate <span className="text-red-800 font-black">AI Orchestration Sequence</span>
+                    Upload source material to initiate{" "}
+                    <span className="text-red-800 font-black">
+                      AI Orchestration Sequence
+                    </span>
                   </p>
                 </div>
 
@@ -266,7 +316,14 @@ export default function Home() {
 
         <footer className="mt-40 mb-10 flex flex-col items-center gap-6 opacity-30">
           <div className="flex gap-1">
-            {[...Array(12)].map((_, i) => <div key={i} className={`w-0.5 h-4 ${i % 3 === 0 ? 'bg-red-700' : 'bg-zinc-800'}`} />)}
+            {[...Array(12)].map((_, i) => (
+              <div
+                key={i}
+                className={`w-0.5 h-4 ${
+                  i % 3 === 0 ? "bg-red-700" : "bg-zinc-800"
+                }`}
+              />
+            ))}
           </div>
           <p className="text-[10px] font-black uppercase tracking-[2em] text-zinc-400">
             Kuźnia Operatorów // Sovereign Content Stack
@@ -276,4 +333,3 @@ export default function Home() {
     </div>
   );
 }
-
