@@ -183,6 +183,7 @@ export default function Home() {
                           <video
                             src={`http://localhost:8000${video.url}`}
                             controls
+                            crossOrigin="anonymous"
                             className="w-full h-full object-contain"
                           />
                           <div className="absolute top-6 left-6 bg-red-700/90 backdrop-blur-lg text-white text-[9px] font-black px-5 py-2 rounded-lg uppercase shadow-2xl tracking-widest border border-white/10">

@@ -24,6 +24,19 @@ Integracja ta stanowi serce naszej architektury "Agentycznego Mózgu". Wykorzyst
 
 ---
 
+## 🛡️ PROTOKÓŁ SUWERENNOŚCI (LOCAL-FIRST ARCHITECTURE)
+
+W świecie zdominowanym przez zamknięte platformy SaaS, **Omni-Operator V1** przywraca kontrolę w ręce inżyniera. System został zaprojektowany w architekturze **Local-First**, co stanowi jego fundament strategiczny.
+
+**Kluczowe filary suwerenności systemu:**
+
+- **Prywatność i Bezpieczeństwo:** Surowe materiały wideo, autorskie strategie marketingowe oraz dane o marce nigdy nie opuszczają Twojego kontrolowanego środowiska. Wykorzystujemy Gemini 3 Flash Preview jako zewnętrzny procesor poznawczy poprzez bezpieczne szyfrowane połączenie API, ale cała logika biznesowa, stany zadań i baza wiedzy pozostają na Twoim dysku.
+- **Eliminacja Podatku SaaS:** Wykorzystujemy potęgę stosu Open Source. Dzięki konteneryzacji (Docker), bazy danych **Qdrant**, systemy monitoringu **Langfuse** oraz silniki bazodanowe **PostgreSQL** działają lokalnie. Oznacza to zero stałych opłat subskrypcyjnych – płacisz wyłącznie za realnie zużyte tokeny Gemini.
+- **Niezależność Operacyjna:** Operator posiada pełny wgląd w każdy "ślad" (trace) Agenta i każdy wektor w pamięci systemu. Budujesz własną inteligencję operacyjną, która jest odporna na zmiany polityk cenowych czy regulaminów zewnętrznych dostawców narzędzi do edycji i dystrybucji.
+
+> **KOMUNIKAT:** System Omni-Operator V1 nie potrzebuje chmury, aby "myśleć" o Twoich danych. On potrzebuje tylko Twojego sprzętu i silnika Gemini 3 Flash Preview.
+
+---
 
 ## 🎯 PROBLEM, KTÓRY ROZWIĄZUJEMY
 
@@ -46,6 +59,9 @@ Content creatorzy tracą **godziny** na żmudną, manualną pracę:
 - **Inteligentnego montażu** - Automatyczne wykrywanie najlepszych momentów i generowanie instrukcji dla silnika montażowego.
 - **Agentury Copywriterskiej** - Tworzenie unikalnych postów na TikTok, YouTube i LinkedIn zwalidowanych przez PydanticAI.
 - **Tactical HUD Interface** - Nowoczesny, agentyczny interfejs użytkownika w stylu "Mission Control" z efektami scanlines, CRT i szklanymi panelami.
+- **Vertical Reframing (9:16)** - Automatyczne kadrowanie poziomego wideo do formatu pionowego (Center Crop) zoptymalizowanego pod TikTok i Reels.
+- **Automatyczny Branding** - Dynamiczne nakładanie warstwy wizualnej (Dark Red status bar) sygnującej materiały marką KUŹNI OPERATORÓW.
+- **Sovereign RAG Memory** - Każda przeprowadzona analiza i kampania trafia do wektorowej bazy Qdrant, tworząc unikalną bazę wiedzy i doświadczeń systemu.
 
 ---
 
@@ -59,12 +75,12 @@ graph TD
     subgraph Brain["🧠 Mózg Agentyczny (Gemini 3 Flash Preview + PydanticAI)"]
         API -->|Trigger| Analyst[📊 Agent Analityk]
         Analyst -->|Extract Hooks JSON| Copywriter[✍️ Agent Copywriter]
-        Copywriter -->|Generate Posts| Memory[(🗄️ Qdrant Vector DB)]
+        Copywriter -->|Save Experience| Memory[(🗄️ Qdrant Vector DB)]
     end
 
     subgraph Factory["🎬 Fabryka Mediów"]
         Copywriter -->|Instructions| VideoEngine[⚙️ MoviePy / FFmpeg]
-        VideoEngine -->|Render Clips| Storage[💾 Local File System]
+        VideoEngine -->|9:16 Crop & Branding| Storage[💾 Local File System]
     end
 
     API -.->|Tracing & Costs| Langfuse[(📈 Langfuse v2)]
@@ -83,12 +99,14 @@ graph TD
 ## � MISSION VISUALS (TACTICAL HUD)
 
 ### FAZA 01: GOTOWOŚĆ_OPERACYJNA (MISSION_READY)
-> *Stan gotowości systemu przed przesłaniem materiału źródłowego.*
-![Mission Ready](./docs/image/before.webp)
+
+> _Stan gotowości systemu przed przesłaniem materiału źródłowego._
+> ![Mission Ready](./docs/image/before.webp)
 
 ### FAZA 02: HANGAR_ZASOBÓW (ASSET_HANGAR)
-> *Podgląd wygenerowanych treści, strategii social media i zmontowanych klipów.*
-![Asset Hangar](./docs/image/before.webp)
+
+> _Podgląd wygenerowanych treści, strategii social media i zmontowanych klipów._
+> ![Asset Hangar](./docs/image/before.webp)
 
 ---
 
@@ -102,21 +120,22 @@ graph TD
 
 ## 🛠️ STOS TECHNOLOGICZNY
 
-| Komponent          | Technologia          | Rola                                        |
-| ------------------ | -------------------- | ------------------------------------------- |
-| **Mózg AI**        | Gemini 3 Flash Prev  | Multimodalna analiza i reasoning            |
-| **Agentura**       | PydanticAI           | Logika agentyczna i typowane wyjścia danych |
-| **Frontend**       | Next.js 16 + Tailwind 4 | Interfejs Tactical HUD                    |
-| **Infrastruktura** | Docker & uv          | Zarządzanie kontenerami i pakietami         |
-| **Monitoring**     | Langfuse v2          | Lokalny tracing i kontrola kosztów          |
-| **Baza Wektorowa** | Qdrant               | Pamięć doświadczeń                          |
-| **Serwer API**     | FastAPI              | Dyrygent całego workflowu                   |
+| Komponent          | Technologia             | Rola                                        |
+| ------------------ | ----------------------- | ------------------------------------------- |
+| **Mózg AI**        | Gemini 3 Flash Prev     | Multimodalna analiza i reasoning            |
+| **Agentura**       | PydanticAI              | Logika agentyczna i typowane wyjścia danych |
+| **Frontend**       | Next.js 16 + Tailwind 4 | Interfejs Tactical HUD                      |
+| **Infrastruktura** | Docker & uv             | Zarządzanie kontenerami i pakietami         |
+| **Monitoring**     | Langfuse v2             | Lokalny tracing i kontrola kosztów          |
+| **Baza Wektorowa** | Qdrant                  | Pamięć doświadczeń                          |
+| **Serwer API**     | FastAPI                 | Dyrygent całego workflowu                   |
 
 ---
 
 ## 🚀 JAK URUCHOMIĆ
 
 ### 1. Przygotowanie Backend (API)
+
 ```bash
 # Wejdź do folderu głównego
 uv sync
@@ -126,6 +145,7 @@ uv run src/api/main.py
 ```
 
 ### 2. Przygotowanie Frontend (Web)
+
 ```bash
 cd web
 pnpm install
@@ -140,4 +160,3 @@ pnpm dev
 Projekt udowadnia, że **Gemini 3 Flash Preview** jest gotowy do roli autonomicznego "Operatora" w najnowocześniejszych systemach Media-Ops.
 
 **Zbudowane z 🔥 przez KUŹNIĘ OPERATORÓW**
-

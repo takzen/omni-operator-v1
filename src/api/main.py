@@ -123,6 +123,19 @@ async def execute_workflow(job_id: str, video_path: str):
             "campaign": campaign.model_dump(),
             "videos": video_results
         }
+        
+        # KROK 4: Pamięć Długotrwała (Qdrant)
+        try:
+            from src.services.memory import save_campaign_to_memory
+            # Używamy tematu z raportu analitycznego jako klucza
+            topic = analysis_report.main_topic
+            save_campaign_to_memory(
+                {**campaign.model_dump(), "job_id": job_id}, 
+                topic
+            )
+        except Exception as mem_err:
+            print(f"WARN [{job_id}]: Nie udało się zapisać w pamięci Qdrant: {mem_err}")
+
         print(f"✅ LOG [{job_id}]: Misja zakończona sukcesem.")
 
     except Exception as e:

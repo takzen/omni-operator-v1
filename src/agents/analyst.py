@@ -44,8 +44,9 @@ analyst_agent = Agent(
         "KRYTYCZNE ZASADY: "
         "1. Każdy klip musi mieć start i end w formacie MM:SS. "
         "2. Czas końcowy (end) MUSI być większy niż czas początkowy (start). "
-        "3. Nigdy nie sugeruj czasu wykraczającego poza faktyczny czas trwania materiału. "
-        "4. Zwracaj wyniki wyłącznie w formacie VideoAnalysisReport."
+        "3. Długość każdego klipu musi mieścić się w przedziale 15 - 60 sekund. "
+        "4. Nigdy nie sugeruj czasu wykraczającego poza faktyczny czas trwania materiału. "
+        "5. Zwracaj wyniki wyłącznie w formacie VideoAnalysisReport."
     )
 )
 

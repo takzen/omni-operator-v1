@@ -20,6 +20,7 @@ class PlatformPost(BaseModel):
 class ClipStrategy(BaseModel):
     """Strategia marketingowa dla pojedynczego fragmentu wideo."""
     clip_index: int = Field(description="Numer porządkowy klipu z analizy")
+    duration_seconds: int = Field(description="Długość klipu w sekundach")
     posts: List[PlatformPost] = Field(description="Warianty treści na platformy")
 
 class CampaignBrief(BaseModel):
@@ -37,6 +38,9 @@ copywriter_agent = Agent(
     system_prompt=(
         "Jesteś Szefem Strategii Contentowej w KUŹNI OPERATORÓW. "
         "Twoim zadaniem jest tworzenie treści social media na podstawie danych technicznych. "
+        "Dopasuj dynamikę i długość copy do czasu trwania klipu (duration_seconds): "
+        "- Dla klipów krótki (<30s): Stosuj ekstremalnie silne hooki i krótkie, prowokujące copy. "
+        "- Dla klipów dłuższych (>30s): Dodaj jeden konkretny merytoryczny wniosek przed CTA. "
         "Dla każdego materiału przygotuj: "
         "1. TikTok: Agresywny hook, szybkie tempo, slang branżowy. "
         "2. YouTube: Skupienie na wartości edukacyjnej i SEO. "

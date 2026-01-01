@@ -12,6 +12,11 @@ def process_shorts(source_path: str, clips: list):
         for i, clip in enumerate(clips, 1):
             start = timestamp_to_seconds(clip['start'])
             end = timestamp_to_seconds(clip['end'])
+
+            # Safety Guard: Max 90 seconds per clip
+            if (end - start) > 90:
+                end = start + 60
+
             new_clip = video.subclipped(start, end)
             new_clip.write_videofile(f"{output_dir}/short_{i}.mp4", codec="libx264", logger=None)
     return output_dir
