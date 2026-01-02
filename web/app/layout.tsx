@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title: "Omni-operator-v1",
   description:
     "Autonomous content distribution factory. From raw MP4 to social media dominance",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

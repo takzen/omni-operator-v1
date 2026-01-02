@@ -22,6 +22,7 @@ from src.core.config import settings
 from src.agents.analyst import run_analysis
 from src.agents.copywriter import run_copywriting
 from src.services.video_proc import process_video_segments
+from src.agents.dispatcher import run_dispatch
 
 # 2. ENVIRONMENT CONFIGURATION FOR LANGFUSE AND GEMINI
 os.environ["GOOGLE_API_KEY"] = settings.gemini_api_key
@@ -116,6 +117,11 @@ async def execute_workflow(job_id: str, video_path: str):
             job_id,
             output_root=output_dir
         )
+        
+        # STEP 4: Strategic Distribution (Dispatcher Agent / MCP)
+        jobs[job_id]["status"] = "DISTRIBUTING"
+        print(f"LOG [{job_id}]: Agent Dispatcher organizing assets...", flush=True)
+        await run_dispatch(job_id, output_dir, campaign.model_dump())
         
         # FINALIZATION: Saving results for frontend
         jobs[job_id]["status"] = "COMPLETED"

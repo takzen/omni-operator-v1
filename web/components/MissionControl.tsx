@@ -17,6 +17,7 @@ type MissionStatus =
   | "analyzing"
   | "writing"
   | "rendering"
+  | "distributing"
   | "completed"
   | "failed";
 
@@ -87,6 +88,7 @@ export default function MissionControl({
         if (data.status === "ANALYZING") setStatus("analyzing");
         if (data.status === "WRITING") setStatus("writing");
         if (data.status === "RENDERING") setStatus("rendering");
+        if (data.status === "DISTRIBUTING") setStatus("distributing");
 
         if (data.status === "COMPLETED") {
           setStatus("completed");
@@ -106,14 +108,13 @@ export default function MissionControl({
   };
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-6">
       {/* SCANNER AREA */}
       <div
-        className={`relative border-2 rounded-[2rem] h-72 flex flex-col items-center justify-center p-10 transition-all duration-500 overflow-hidden group/scanner ${
-          file
-            ? "border-red-600 bg-red-950/5"
-            : "border-white/5 bg-black/40 hover:bg-black/60 hover:border-white/10"
-        }`}
+        className={`relative border-2 rounded-[1.5rem] h-48 flex flex-col items-center justify-center p-6 transition-all duration-500 overflow-hidden group/scanner ${file
+          ? "border-red-600 bg-red-950/5"
+          : "border-white/5 bg-black/40 hover:bg-black/60 hover:border-white/10"
+          }`}
       >
         {/* Animated Scanner Bar */}
         {status !== "idle" && status !== "completed" && status !== "failed" && (
@@ -122,14 +123,13 @@ export default function MissionControl({
           </div>
         )}
 
-        <div className="relative z-10 flex flex-col items-center gap-6">
+        <div className="relative z-10 flex flex-col items-center gap-3">
           <div className="relative group/icon">
             <Scan
-              className={`w-14 h-14 transition-all duration-500 ${
-                file ? "text-red-600 scale-110 rotate-90" : "text-zinc-800"
-              }`}
+              className={`w-10 h-10 transition-all ${file && status !== "completed" && status !== "failed" ? "text-red-600 scale-110 rotate-90" : "text-zinc-800"
+                }`}
             />
-            {file && (
+            {file && status !== "completed" && status !== "failed" && (
               <Fingerprint className="absolute inset-0 m-auto text-red-500 animate-pulse w-6 h-6" />
             )}
           </div>
@@ -184,12 +184,11 @@ export default function MissionControl({
           !file ||
           (status !== "idle" && status !== "completed" && status !== "failed")
         }
-        className={`group relative w-full h-20 rounded-2xl font-black text-2xl uppercase tracking-tighter transition-all overflow-hidden ${
-          !file ||
+        className={`group relative w-full h-20 rounded-2xl font-black text-2xl uppercase tracking-tighter transition-all overflow-hidden ${!file ||
           (status !== "idle" && status !== "completed" && status !== "failed")
-            ? "bg-zinc-900/50 text-zinc-700 border border-white/5 cursor-not-allowed"
-            : "bg-white text-black hover:bg-red-700 hover:text-white red-glow active:scale-[0.98]"
-        }`}
+          ? "bg-zinc-900/50 text-zinc-700 border border-white/5 cursor-not-allowed"
+          : "bg-white text-black hover:bg-red-700 hover:text-white red-glow active:scale-[0.98]"
+          }`}
       >
         <span className="relative z-10 flex items-center justify-center gap-4">
           {status === "idle" && (
@@ -201,8 +200,9 @@ export default function MissionControl({
           {status === "analyzing" && "GEMINI: NEURAL_MAPPING..."}
           {status === "writing" && "AGENT: CONTENT_GENERATION..."}
           {status === "rendering" && "SYSTEM: FFMPEG_SYNTHESIS..."}
+          {status === "distributing" && "MCP: ASSET_DISTRIBUTION..."}
           {status === "completed" && "MISSION_COMPLETE"}
-          {status === "failed" && "KRYTYCZNY_BŁĄD"}
+          {status === "failed" && "CRITICAL_ERROR"}
 
           {status !== "idle" &&
             status !== "completed" &&
@@ -256,13 +256,15 @@ export default function MissionControl({
               <div className="flex items-center gap-3">
                 {status === "failed" ? (
                   <AlertCircle size={14} className="text-red-500" />
+                ) : status === "completed" ? (
+                  <CheckCircle2 size={14} className="text-green-500" />
                 ) : (
                   <Activity size={14} className="text-red-700 animate-spin" />
                 )}
                 <span
-                  className={`font-black tracking-widest ${
-                    status === "failed" ? "text-red-500" : "text-zinc-200"
-                  }`}
+                  className={`font-black tracking-widest ${status === "failed" ? "text-red-500" :
+                    status === "completed" ? "text-green-500" : "text-zinc-200"
+                    }`}
                 >
                   PROTOCOL_STATUS: {status.toUpperCase()}
                 </span>
@@ -277,17 +279,18 @@ export default function MissionControl({
               {status !== "failed" && (
                 <div className="w-full h-1 bg-zinc-900 rounded-full overflow-hidden">
                   <div
-                    className={`h-full bg-red-700 transition-all duration-1000 ${
-                      status === "analyzing"
-                        ? "w-1/3"
-                        : status === "writing"
-                        ? "w-2/3"
+                    className={`h-full bg-red-700 transition-all duration-1000 ${status === "analyzing"
+                      ? "w-1/4"
+                      : status === "writing"
+                        ? "w-1/2"
                         : status === "rendering"
-                        ? "w-[90%]"
-                        : status === "completed"
-                        ? "w-full"
-                        : "w-0"
-                    }`}
+                          ? "w-3/4"
+                          : status === "distributing"
+                            ? "w-[90%]"
+                            : status === "completed"
+                              ? "w-full"
+                              : "w-0"
+                      }`}
                   />
                 </div>
               )}

@@ -64,18 +64,28 @@ def process_video_segments(source_path: str, clips_data: list, job_id: str, outp
                 height=new_h
             )
             
-            # 3. Adding OPERATORS' FORGE branding bar
-            from moviepy.video.VideoClip import ColorClip
+            # 3. Adding OPERATORS' FORGE branding Watermark
+            from moviepy.video.VideoClip import ImageClip
             from moviepy.video.compositing.CompositeVideoClip import CompositeVideoClip
             
+            logo_path = os.path.join(os.getcwd(), "web", "public", "logo.png")
             try:
-                # Bar with height of 5% of screen at bottom in Dark Red color
-                brand_overlay = ColorClip(
-                    size=(new_w, int(new_h * 0.05)), 
-                    color=(139, 0, 0) # #8B0000
-                ).with_duration(final_clip.duration).with_opacity(0.8).with_position(("center", "bottom"))
-                
-                output_clip = CompositeVideoClip([final_clip, brand_overlay])
+                if os.path.exists(logo_path):
+                    # Branding with logo image
+                    brand_overlay = (ImageClip(logo_path)
+                                   .with_duration(final_clip.duration)
+                                   .resized(height=int(new_h * 0.1)) # 10% of height
+                                   .with_opacity(0.7)
+                                   .with_position(("center", "bottom")))
+                    output_clip = CompositeVideoClip([final_clip, brand_overlay])
+                else:
+                    # Fallback to a thinner, more subtle line if logo missing
+                    from moviepy.video.VideoClip import ColorClip
+                    brand_overlay = ColorClip(
+                        size=(new_w, 2), 
+                        color=(255, 255, 255) 
+                    ).with_duration(final_clip.duration).with_opacity(0.3).with_position(("center", "bottom"))
+                    output_clip = CompositeVideoClip([final_clip, brand_overlay])
             except Exception as e:
                 print(f"WARN: Error applying branding: {e}. Rendering clean vertical.")
                 output_clip = final_clip
