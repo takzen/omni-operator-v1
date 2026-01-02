@@ -1,8 +1,8 @@
 # 🤖 omni-operator-v1
 
-**Autonomiczna fabryka dystrybucji treści. Od surowego MP4 do dominacji w social mediach.**
+**Autonomous content distribution factory. From raw MP4 to social media dominance.**
 
-![STATUS-OPERACYJNY](https://img.shields.io/badge/STATUS-OPERACYJNY-FF0000?style=for-the-badge)
+![STATUS-OPERATIONAL](https://img.shields.io/badge/STATUS-OPERATIONAL-FF0000?style=for-the-badge)
 ![HACKATHON](https://img.shields.io/badge/HACKATHON-GEMINI_3_HACKATHON-blue?style=for-the-badge&logo=google)
 ![PYTHON](https://img.shields.io/badge/PYTHON-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![SDK](https://img.shields.io/badge/GOOGLE_GENAI-1.56.0-0047AB?style=for-the-badge&logo=google-gemini&logoColor=white)
@@ -11,74 +11,74 @@
 ![QDRANT](https://img.shields.io/badge/QDRANT-1.16.3-F50057?style=for-the-badge&logo=qdrant&logoColor=white)
 ![LANGFUSE](https://img.shields.io/badge/LANGFUSE-2.x-000000?style=for-the-badge&logo=langfuse&logoColor=white)
 
-> 🏆 **Zgłoszenie konkursowe**: [Gemini API Developer Competition](https://gemini3.devpost.com/)
+> 🏆 **Competition Entry**: [Gemini API Developer Competition](https://gemini3.devpost.com/)
 
 ---
 
-### 📝 ZGŁOSZENIE: GEMINI 3 HACKATHON
+### 📝 SUBMISSION: GEMINI 3 HACKATHON
 
-**Opis Integracji Gemini (~200 słów):**
-Omni-Operator V1 to autonomiczna fabryka mediów napędzana w całości przez **Gemini 3 Flash Preview**. Aplikacja wykorzystuje najnowocześniejszą **natywną multimodalność** Gemini do bezpośredniej analizy wideo, eliminując potrzebę stosowania tradycyjnej transkrypcji czy osobnych modeli wizyjnych. Dzięki "oglądaniu" surowych plików MP4, Gemini 3 Flash identyfikuje momenty o wysokim potencjale viralowym, korzystając ze swoich zaawansowanych zdolności **zakotwiczenia przestrzenno-czasowego (Spatial & Temporal Grounding)**.
+**Gemini Integration Description (~200 words):**
+Omni-Operator V1 is an autonomous media factory powered entirely by **Gemini 3 Flash Preview**. The application leverages Gemini's cutting-edge **native multimodality** for direct video analysis, eliminating the need for traditional transcription or separate vision models. By "watching" raw MP4 files, Gemini 3 Flash identifies moments with high viral potential, utilizing its advanced **Spatial & Temporal Grounding** capabilities.
 
-Integracja ta stanowi serce naszej architektury "Agentycznego Mózgu". Wykorzystujemy **ogromne okno kontekstowe** Gemini 3 Flash do analizy całych nagrań w jednym przebiegu, co gwarantuje zachowanie kontekstu i ciągłości narracyjnej we wszystkich generowanych materiałach. Co więcej, używamy **strukturyzowanych danych wyjściowych (response_schema)**, aby przetłumaczyć rozumowanie AI bezpośrednio na instrukcje techniczne dla naszego silnika edycji opartego na FFmpeg. Ten płynny pomost między merytorycznym zrozumieniem multimodalnym a precyzyjną manipulacją plikami pozwala Omni-Operatorowi przekształcić surowe wideo w zoptymalizowane klipy na TikToka, YouTube'a i LinkedIna w zaledwie kilka sekund. Krótko mówiąc, Gemini 3 Flash pełni rolę suwerennego procesora poznawczego, umożliwiając poziom automatyzacji i szybkości, który wcześniej był nieosiągalny.
-
----
-
-## 🛡️ PROTOKÓŁ SUWERENNOŚCI (LOCAL-FIRST ARCHITECTURE)
-
-W świecie zdominowanym przez zamknięte platformy SaaS, **Omni-Operator V1** przywraca kontrolę w ręce inżyniera. System został zaprojektowany w architekturze **Local-First**, co stanowi jego fundament strategiczny.
-
-**Kluczowe filary suwerenności systemu:**
-
-- **Prywatność i Bezpieczeństwo:** Surowe materiały wideo, autorskie strategie marketingowe oraz dane o marce nigdy nie opuszczają Twojego kontrolowanego środowiska. Wykorzystujemy Gemini 3 Flash Preview jako zewnętrzny procesor poznawczy poprzez bezpieczne szyfrowane połączenie API, ale cała logika biznesowa, stany zadań i baza wiedzy pozostają na Twoim dysku.
-- **Eliminacja Podatku SaaS:** Wykorzystujemy potęgę stosu Open Source. Dzięki konteneryzacji (Docker), bazy danych **Qdrant**, systemy monitoringu **Langfuse** oraz silniki bazodanowe **PostgreSQL** działają lokalnie. Oznacza to zero stałych opłat subskrypcyjnych – płacisz wyłącznie za realnie zużyte tokeny Gemini.
-- **Niezależność Operacyjna:** Operator posiada pełny wgląd w każdy "ślad" (trace) Agenta i każdy wektor w pamięci systemu. Budujesz własną inteligencję operacyjną, która jest odporna na zmiany polityk cenowych czy regulaminów zewnętrznych dostawców narzędzi do edycji i dystrybucji.
-
-> **KOMUNIKAT:** System Omni-Operator V1 nie potrzebuje chmury, aby "myśleć" o Twoich danych. On potrzebuje tylko Twojego sprzętu i silnika Gemini 3 Flash Preview.
+This integration forms the heart of our "Agentic Brain" architecture. We leverage Gemini 3 Flash's **massive context window** to analyze entire recordings in a single pass, ensuring context preservation and narrative continuity across all generated materials. Furthermore, we use **structured outputs (response_schema)** to translate AI reasoning directly into technical instructions for our FFmpeg-based editing engine. This seamless bridge between substantive multimodal understanding and precise file manipulation allows Omni-Operator to transform raw video into optimized clips for TikTok, YouTube, and LinkedIn in just seconds. In short, Gemini 3 Flash serves as the sovereign cognitive processor, enabling a level of automation and speed that was previously unattainable.
 
 ---
 
-## 🎯 PROBLEM, KTÓRY ROZWIĄZUJEMY
+## 🛡️ SOVEREIGNTY PROTOCOL (LOCAL-FIRST ARCHITECTURE)
 
-Content creatorzy tracą **godziny** na żmudną, manualną pracę:
+In a world dominated by closed SaaS platforms, **Omni-Operator V1** returns control to the engineer. The system was designed with a **Local-First** architecture, which forms its strategic foundation.
 
-- 🎬 Oglądanie długich nagrań w poszukiwaniu "viralnych momentów" (tzw. hooks).
-- ✂️ Cięcie i formatowanie pod wymogi różnych platform.
-- ✍️ Pisanie unikalnych opisów, strategii i dobieranie hashtagów.
-- 📁 Organizację i fizyczną dystrybucję plików.
+**Key pillars of system sovereignty:**
 
-**Nasza wizja**: Jeden upload → Pełna automatyzacja agentyczna → Wygenerowane Shortsy i posty gotowe do publikacji w interfejsie klasy premium.
+- **Privacy and Security:** Raw video materials, proprietary marketing strategies, and brand data never leave your controlled environment. We use Gemini 3 Flash Preview as an external cognitive processor via secure encrypted API connection, but all business logic, task states, and knowledge base remain on your disk.
+- **SaaS Tax Elimination:** We leverage the power of the Open Source stack. Through containerization (Docker), **Qdrant** databases, **Langfuse** monitoring systems, and **PostgreSQL** database engines run locally. This means zero fixed subscription fees – you only pay for actually consumed Gemini tokens.
+- **Operational Independence:** The Operator has full insight into every Agent "trace" and every vector in the system's memory. You're building your own operational intelligence that's resistant to pricing policy changes or terms of service from external editing and distribution tool providers.
 
----
-
-## 💡 NASZE ROZWIĄZANIE
-
-**Omni-Operator v1** to suwerenny system AI, który wykorzystuje **Gemini 3 Flash Preview** jako multimodalny procesor decyzyjny do:
-
-- **Multimodalnej analizy (Native Vision)** - Gemini "ogląda" wideo przez nowe SDK `google-genai` i rozumie kontekst wizualny + audio bez żadnych pośrednich narzędzi.
-- **Inteligentnego montażu** - Automatyczne wykrywanie najlepszych momentów i generowanie instrukcji dla silnika montażowego.
-- **Agentury Copywriterskiej** - Tworzenie unikalnych postów na TikTok, YouTube i LinkedIn zwalidowanych przez PydanticAI.
-- **Tactical HUD Interface** - Nowoczesny, agentyczny interfejs użytkownika w stylu "Mission Control" z efektami scanlines, CRT i szklanymi panelami.
-- **Vertical Reframing (9:16)** - Automatyczne kadrowanie poziomego wideo do formatu pionowego (Center Crop) zoptymalizowanego pod TikTok i Reels.
-- **Automatyczny Branding** - Dynamiczne nakładanie warstwy wizualnej (Dark Red status bar) sygnującej materiały marką KUŹNI OPERATORÓW.
-- **Sovereign RAG Memory** - Każda przeprowadzona analiza i kampania trafia do wektorowej bazy Qdrant, tworząc unikalną bazę wiedzy i doświadczeń systemu.
+> **NOTICE:** The Omni-Operator V1 system doesn't need the cloud to "think" about your data. It only needs your hardware and the Gemini 3 Flash Preview engine.
 
 ---
 
-## 🏗️ ARCHITEKTURA SYSTEMU
+## 🎯 THE PROBLEM WE SOLVE
+
+Content creators waste **hours** on tedious, manual work:
+
+- 🎬 Watching long recordings searching for "viral moments" (hooks).
+- ✂️ Cutting and formatting for different platform requirements.
+- ✍️ Writing unique descriptions, strategies, and selecting hashtags.
+- 📁 Organizing and physically distributing files.
+
+**Our vision**: One upload → Full agentic automation → Generated Shorts and posts ready for publication in a premium-class interface.
+
+---
+
+## 💡 OUR SOLUTION
+
+**Omni-Operator v1** is a sovereign AI system that uses **Gemini 3 Flash Preview** as a multimodal decision processor for:
+
+- **Multimodal Analysis (Native Vision)** - Gemini "watches" video through the new `google-genai` SDK and understands visual + audio context without any intermediate tools.
+- **Intelligent Editing** - Automatic detection of best moments and generation of instructions for the editing engine.
+- **Copywriting Agency** - Creating unique posts for TikTok, YouTube, and LinkedIn validated by PydanticAI.
+- **Tactical HUD Interface** - Modern, agentic user interface in "Mission Control" style with scanlines, CRT effects, and glass panels.
+- **Vertical Reframing (9:16)** - Automatic framing of horizontal video to vertical format (Center Crop) optimized for TikTok and Reels.
+- **Automatic Branding** - Dynamic overlay of visual layer (Dark Red status bar) branding materials with OPERATORS' FORGE mark.
+- **Sovereign RAG Memory** - Every analysis and campaign conducted goes to the Qdrant vector database, creating a unique knowledge and experience base for the system.
+
+---
+
+## 🏗️ SYSTEM ARCHITECTURE
 
 ```mermaid
 graph TD
     User([👤 Operator/User]) -->|Upload MP4| API[🎯 FastAPI Conductor]
     UI[🖥️ Tactical HUD Frontend] <--> API
 
-    subgraph Brain["🧠 Mózg Agentyczny (Gemini 3 Flash Preview + PydanticAI)"]
-        API -->|Trigger| Analyst[📊 Agent Analityk]
-        Analyst -->|Extract Hooks JSON| Copywriter[✍️ Agent Copywriter]
+    subgraph Brain["🧠 Agentic Brain (Gemini 3 Flash Preview + PydanticAI)"]
+        API -->|Trigger| Analyst[📊 Analyst Agent]
+        Analyst -->|Extract Hooks JSON| Copywriter[✍️ Copywriter Agent]
         Copywriter -->|Save Experience| Memory[(🗄️ Qdrant Vector DB)]
     end
 
-    subgraph Factory["🎬 Fabryka Mediów"]
+    subgraph Factory["🎬 Media Factory"]
         Copywriter -->|Instructions| VideoEngine[⚙️ MoviePy / FFmpeg]
         VideoEngine -->|9:16 Crop & Branding| Storage[💾 Local File System]
     end
@@ -96,65 +96,65 @@ graph TD
     class Memory,Storage,Langfuse storageNode
 ```
 
-## � MISSION VISUALS (TACTICAL HUD)
+## 📸 MISSION VISUALS (TACTICAL HUD)
 
-### FAZA 01: GOTOWOŚĆ_OPERACYJNA (MISSION_READY)
+### PHASE 01: OPERATIONAL_READINESS (MISSION_READY)
 
-> _Stan gotowości systemu przed przesłaniem materiału źródłowego._ > ![Mission Ready](./docs/image/before.webp)
+> _System readiness state before uploading source material._ > ![Mission Ready](./docs/image/before.webp)
 
-### FAZA 02: HANGAR_ZASOBÓW (ASSET_HANGAR)
+### PHASE 02: ASSET_HANGAR (ASSET_HANGAR)
 
-> _Podgląd wygenerowanych treści, strategii social media i zmontowanych klipów._ > ![Asset Hangar](./docs/image/after.webp)
-
----
-
-## 🚀 DLACZEGO GEMINI 3 FLASH PREVIEW?
-
-- ✅ **Szybkość**: Błyskawiczna analiza multimodalna.
-- ✅ **Native Video Grounding**: Precyzyjne łączenie treści z czasem (sekundy).
-- ✅ **Google Cloud Integration**: Wykorzystanie najnowszego SDK `google-genai` dla bezpiecznego przetwarzania plików.
+> _Preview of generated content, social media strategies, and edited clips._ > ![Asset Hangar](./docs/image/after.webp)
 
 ---
 
-## 🛠️ STOS TECHNOLOGICZNY
+## 🚀 WHY GEMINI 3 FLASH PREVIEW?
 
-| Komponent          | Technologia             | Rola                                        |
-| ------------------ | ----------------------- | ------------------------------------------- |
-| **Mózg AI**        | Gemini 3 Flash Prev     | Multimodalna analiza i reasoning            |
-| **Agentura**       | PydanticAI              | Logika agentyczna i typowane wyjścia danych |
-| **Frontend**       | Next.js 16 + Tailwind 4 | Interfejs Tactical HUD                      |
-| **Infrastruktura** | Docker & uv             | Zarządzanie kontenerami i pakietami         |
-| **Monitoring**     | Langfuse v2             | Lokalny tracing i kontrola kosztów          |
-| **Baza Wektorowa** | Qdrant                  | Pamięć doświadczeń                          |
-| **Serwer API**     | FastAPI                 | Dyrygent całego workflowu                   |
+- ✅ **Speed**: Lightning-fast multimodal analysis.
+- ✅ **Native Video Grounding**: Precise linking of content with time (seconds).
+- ✅ **Google Cloud Integration**: Utilizing the latest `google-genai` SDK for secure file processing.
 
 ---
 
-## 🚀 JAK URUCHOMIĆ
+## 🛠️ TECHNOLOGY STACK
 
-### 1. Przygotowanie Backend (API)
+| Component           | Technology              | Role                                 |
+| ------------------- | ----------------------- | ------------------------------------ |
+| **AI Brain**        | Gemini 3 Flash Prev     | Multimodal analysis and reasoning    |
+| **Agency**          | PydanticAI              | Agentic logic and typed data outputs |
+| **Frontend**        | Next.js 16 + Tailwind 4 | Tactical HUD Interface               |
+| **Infrastructure**  | Docker & uv             | Container and package management     |
+| **Monitoring**      | Langfuse v2             | Local tracing and cost control       |
+| **Vector Database** | Qdrant                  | Experience memory                    |
+| **API Server**      | FastAPI                 | Conductor of the entire workflow     |
+
+---
+
+## 🚀 HOW TO RUN
+
+### 1. Backend Preparation (API)
 
 ```bash
-# Wejdź do folderu głównego
+# Enter the main folder
 uv sync
 docker-compose up -d
-# Skonfiguruj .env (GOOGLE_API_KEY, LANGFUSE_*)
+# Configure .env (GOOGLE_API_KEY, LANGFUSE_*)
 uv run src/api/main.py
 ```
 
-### 2. Przygotowanie Frontend (Web)
+### 2. Frontend Preparation (Web)
 
 ```bash
 cd web
 pnpm install
 pnpm dev
-# Otwórz http://localhost:4000
+# Open http://localhost:4000
 ```
 
 ---
 
 ## 🏆 GEMINI API DEVELOPER COMPETITION
 
-Projekt udowadnia, że **Gemini 3 Flash Preview** jest gotowy do roli autonomicznego "Operatora" w najnowocześniejszych systemach Media-Ops.
+The project proves that **Gemini 3 Flash Preview** is ready to serve as an autonomous "Operator" in state-of-the-art Media-Ops systems.
 
-**Zbudowane z 🔥 przez KUŹNIĘ OPERATORÓW**
+**Built with 🔥 by OPERATORS' FORGE**
