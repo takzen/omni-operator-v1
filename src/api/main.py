@@ -9,13 +9,13 @@ from fastapi import FastAPI, UploadFile, File, BackgroundTasks, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
-# 1. KRYTYCZNE: USTAWIE ŚCIEŻEK PROJEKTU
-# Pozwala na importowanie modułów z folderu 'src' niezależnie od miejsca uruchomienia
+# 1. CRITICAL: PROJECT PATH SETUP
+# Allows importing modules from 'src' folder regardless of launch location
 root_path = str(Path(__file__).parent.parent.parent)
 if root_path not in sys.path:
     sys.path.append(root_path)
 
-# Ładowanie zmiennych środowiskowych z pliku .env w ROOT
+# Loading environment variables from .env file in ROOT
 load_dotenv(os.path.join(root_path, ".env"))
 
 from src.core.config import settings
@@ -23,25 +23,25 @@ from src.agents.analyst import run_analysis
 from src.agents.copywriter import run_copywriting
 from src.services.video_proc import process_video_segments
 
-# 2. KONFIGURACJA ŚRODOWISKA DLA LANGFUSE I GEMINI
+# 2. ENVIRONMENT CONFIGURATION FOR LANGFUSE AND GEMINI
 os.environ["GOOGLE_API_KEY"] = settings.gemini_api_key
 os.environ["LANGFUSE_PUBLIC_KEY"] = settings.langfuse_public_key
 os.environ["LANGFUSE_SECRET_KEY"] = settings.langfuse_secret_key
 os.environ["LANGFUSE_HOST"] = settings.langfuse_host
 
-# 3. INICJALIZACJA API
+# 3. API INITIALIZATION
 app = FastAPI(title="OMNI-OPERATOR-V1 // API")
 
-# Pozwalamy Next.js (port 4000) na pełną komunikację z backendem
+# We allow Next.js (port 4000) full communication with backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Na etapie dev pozwalamy na wszystkie źródła
+    allow_origins=["*"], # At dev stage we allow all origins
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Tworzymy foldery na dane, jeśli nie istnieją
+# We create folders for data if they don't exist
 root_path_obj = Path(__file__).resolve().parent.parent.parent
 temp_dir = root_path_obj / "temp"
 output_dir = root_path_obj / "web" / "public" / "output"
@@ -51,13 +51,13 @@ output_dir.mkdir(parents=True, exist_ok=True)
 
 print(f"LOG: Serving static files from: {output_dir}")
 
-# SŁUŻYMY PLIKAMI STATYCZNYMI (GŁÓWNIE WIDEO)
+# WE SERVE STATIC FILES (MAINLY VIDEO)
 app.mount("/output", StaticFiles(directory=str(output_dir)), name="output")
 
-# Baza zadań w pamięci RAM
+# Job database in RAM
 jobs = {}
 
-# --- ENDPOINTY ---
+# --- ENDPOINTS ---
 
 @app.get("/")
 async def health_check():
@@ -65,15 +65,15 @@ async def health_check():
 
 @app.post("/upload")
 async def start_mission(background_tasks: BackgroundTasks, file: UploadFile = File(...)):
-    """Przyjmuje plik wideo i inicjuje asynchroniczny workflow."""
+    """Accepts video file and initiates asynchronous workflow."""
     job_id = str(uuid.uuid4())[:8]
     temp_path = os.path.join(temp_dir, f"{job_id}_{file.filename}")
     
-    # Zapis pliku na dysku serwera
+    # Saving file on server disk
     with open(temp_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     
-    # Inicjalizacja stanu zadania
+    # Task state initialization
     jobs[job_id] = {
         "job_id": job_id,
         "status": "ANALYZING",
@@ -81,35 +81,35 @@ async def start_mission(background_tasks: BackgroundTasks, file: UploadFile = Fi
         "result": None
     }
     
-    # Uruchomienie "Pociągu Montażowego" w tle
+    # Launching "Editing Train" in background
     background_tasks.add_task(execute_workflow, job_id, temp_path)
     
     return {"job_id": job_id, "status": "STARTED"}
 
 @app.get("/status/{job_id}")
 async def get_status(job_id: str):
-    """Zwraca aktualny stan zadania dla frontendu."""
+    """Returns current task state for frontend."""
     if job_id not in jobs:
         raise HTTPException(status_code=404, detail="Mission not found")
     return jobs[job_id]
 
-# --- WORKFLOW DYRYGENTA ---
+# --- CONDUCTOR WORKFLOW ---
 
 async def execute_workflow(job_id: str, video_path: str):
-    """Orkiestracja wszystkich modułów systemu."""
+    """Orchestration of all system modules."""
     try:
-        # KROK 1: Multimodalna Analiza Gemini 3 Flash Preview
-        print(f"LOG [{job_id}]: Start analizy wizualnej...")
+        # STEP 1: Multimodal Analysis Gemini 3 Flash Preview
+        print(f"LOG [{job_id}]: Starting visual analysis...")
         analysis_report = await run_analysis(video_path)
         
-        # KROK 2: Generowanie Strategii i Postów (Agent Copywriter)
+        # STEP 2: Strategy and Posts Generation (Copywriter Agent)
         jobs[job_id]["status"] = "WRITING"
-        print(f"LOG [{job_id}]: Gemini generuje posty social media...")
+        print(f"LOG [{job_id}]: Gemini generating social media posts...")
         campaign = await run_copywriting(analysis_report.model_dump())
         
-        # KROK 3: Fizyczny Montaż FFmpeg (Video Proc)
+        # STEP 3: Physical FFmpeg Editing (Video Proc)
         jobs[job_id]["status"] = "RENDERING"
-        print(f"LOG [{job_id}]: System tnie wideo na fragmenty...")
+        print(f"LOG [{job_id}]: System cutting video into fragments...")
         video_results = process_video_segments(
             video_path, 
             analysis_report.model_dump()['clips'], 
@@ -117,35 +117,35 @@ async def execute_workflow(job_id: str, video_path: str):
             output_root=output_dir
         )
         
-        # FINALIZACJA: Zapisanie wyników dla frontendu
+        # FINALIZATION: Saving results for frontend
         jobs[job_id]["status"] = "COMPLETED"
         jobs[job_id]["result"] = {
             "campaign": campaign.model_dump(),
             "videos": video_results
         }
         
-        # KROK 4: Pamięć Długotrwała (Qdrant)
+        # STEP 4: Long-term Memory (Qdrant)
         try:
             from src.services.memory import save_campaign_to_memory
-            # Używamy tematu z raportu analitycznego jako klucza
+            # We use topic from analytical report as key
             topic = analysis_report.main_topic
             save_campaign_to_memory(
                 {**campaign.model_dump(), "job_id": job_id}, 
                 topic
             )
         except Exception as mem_err:
-            print(f"WARN [{job_id}]: Nie udało się zapisać w pamięci Qdrant: {mem_err}")
+            print(f"WARN [{job_id}]: Failed to save in Qdrant memory: {mem_err}")
 
-        print(f"✅ LOG [{job_id}]: Misja zakończona sukcesem.")
+        print(f"✅ LOG [{job_id}]: Mission completed successfully.")
 
     except Exception as e:
         jobs[job_id]["status"] = "FAILED"
         jobs[job_id]["error"] = str(e)
-        print(f"❌ LOG [{job_id}]: BŁĄD KRYTYCZNY: {e}")
+        print(f"❌ LOG [{job_id}]: CRITICAL ERROR: {e}")
 
-# --- START SERWERA ---
+# --- SERVER START ---
 
 if __name__ == "__main__":
     import uvicorn
-    # Uruchomienie na porcie 8000
+    # Launch on port 8000
     uvicorn.run(app, host="0.0.0.0", port=8000)

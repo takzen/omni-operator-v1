@@ -2,7 +2,7 @@ import os
 from moviepy.video.io.VideoFileClip import VideoFileClip
 
 def timestamp_to_seconds(ts: str) -> float:
-    """Konwertuje format MM:SS na sekundy."""
+    """Converts MM:SS format to seconds."""
     try:
         parts = ts.split(':')
         return float(int(parts[0]) * 60 + int(parts[1]))
@@ -10,7 +10,7 @@ def timestamp_to_seconds(ts: str) -> float:
         return 0.0
 
 def process_video_segments(source_path: str, clips_data: list, job_id: str, output_root: str = None):
-    """Wycina klipy i zapisuje je w folderze publicznym."""
+    """Cuts clips and saves them in public folder."""
     if output_root is None:
         output_root = os.path.join("web", "public", "output")
         
@@ -19,7 +19,7 @@ def process_video_segments(source_path: str, clips_data: list, job_id: str, outp
     
     generated_files = []
     
-    print(f"LOG: Rozpoczynam montaż dla Job: {job_id}")
+    print(f"LOG: Starting editing for Job: {job_id}")
     
     with VideoFileClip(source_path) as video:
         for i, clip in enumerate(clips_data, 1):
@@ -29,30 +29,30 @@ def process_video_segments(source_path: str, clips_data: list, job_id: str, outp
             file_name = f"short_{i}.mp4"
             target_path = os.path.join(output_base, file_name)
             
-            print(f"LOG: Renderowanie fragmentu {i}...")
+            print(f"LOG: Rendering fragment {i}...")
             
-            # ZABEZPIECZENIE: Nie wycinamy poza czas trwania filmu
+            # SAFETY: We don't cut beyond video duration
             end_s = min(end_s, video.duration)
 
             # Safety Guard: Max 90 seconds per clip
             if (end_s - start_s) > 90:
-                print(f"⚠️ OSTRZEŻENIE: Klip {i} jest za długi ({end_s - start_s}s). Przycinam do 60s.")
+                print(f"⚠️ WARNING: Clip {i} is too long ({end_s - start_s}s). Trimming to 60s.")
                 end_s = start_s + 60
 
             if start_s >= end_s:
-                print(f"WARN: Segment {i} jest nieprawidłowy (start >= end). Pomijam.")
+                print(f"WARN: Segment {i} is invalid (start >= end). Skipping.")
                 continue
                 
-            # 1. Wycięcie fragmentu
+            # 1. Fragment extraction
             source_clip = video.subclipped(start_s, end_s)
             
-            # 2. Automatyczne kadrowanie do 9:16 (Pionowe wideo pod Shorts/TikTok)
+            # 2. Automatic cropping to 9:16 (Vertical video for Shorts/TikTok)
             w, h = source_clip.size
             target_ratio = 9/16
             new_h = h
             new_w = int(h * target_ratio)
             
-            # Sprawdzenie czy wideo nie jest już pionowe lub węższe niż 9:16
+            # Check if video is not already vertical or narrower than 9:16
             if new_w > w:
                 new_w = w
                 new_h = int(w / target_ratio)
@@ -64,12 +64,12 @@ def process_video_segments(source_path: str, clips_data: list, job_id: str, outp
                 height=new_h
             )
             
-            # 3. Dodanie paska brandingowego KUŹNI OPERATORÓW
+            # 3. Adding OPERATORS' FORGE branding bar
             from moviepy.video.VideoClip import ColorClip
             from moviepy.video.compositing.CompositeVideoClip import CompositeVideoClip
             
             try:
-                # Pasek o wysokości 5% ekranu na dole w kolorze Dark Red
+                # Bar with height of 5% of screen at bottom in Dark Red color
                 brand_overlay = ColorClip(
                     size=(new_w, int(new_h * 0.05)), 
                     color=(139, 0, 0) # #8B0000
@@ -77,16 +77,16 @@ def process_video_segments(source_path: str, clips_data: list, job_id: str, outp
                 
                 output_clip = CompositeVideoClip([final_clip, brand_overlay])
             except Exception as e:
-                print(f"WARN: Błąd przy nakładaniu brandingu: {e}. Renderuję czysty pion.")
+                print(f"WARN: Error applying branding: {e}. Rendering clean vertical.")
                 output_clip = final_clip
             
-            # 4. Render finalny
+            # 4. Final render
             output_clip.write_videofile(target_path, codec="libx264", audio_codec="aac", logger=None)
             
-            # URL względny dla Next.js
+            # Relative URL for Next.js
             generated_files.append({
                 "url": f"/output/{job_id}/{file_name}",
-                "hook": clip.get('narrative_hook', 'Brak opisu')
+                "hook": clip.get('narrative_hook', 'No description')
             })
             
     return generated_files
