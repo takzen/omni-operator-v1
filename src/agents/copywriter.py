@@ -53,7 +53,7 @@ copywriter_agent = Agent(
         
         "CRITICAL RULE: If the video shows robots, write about robotics. If it shows drones, write about drones. "
         "Never assume the topic in advance. Adapt Forge values to the video context.\n"
-        "Write exclusively in Polish."
+        "Write exclusively in English."
     )
 )
 
