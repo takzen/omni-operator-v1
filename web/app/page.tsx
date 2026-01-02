@@ -36,20 +36,20 @@ export default function Home() {
 
       <main className="h-full max-w-[1600px] mx-auto px-6 py-4 relative z-10 flex flex-col">
         {/* HEADER: TACTICAL HUD STYLE */}
-        <header className="mb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 glass-panel p-4 rounded-xl border-l-4 border-l-red-700 relative overflow-hidden group shrink-0">
+        <header className="mb-2 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 glass-panel p-3 rounded-lg border-l-4 border-l-red-700 relative overflow-hidden group shrink-0">
           <div className="absolute top-0 right-0 p-2 opacity-5 scale-150 rotate-12 group-hover:rotate-0 transition-all duration-700">
             <Cpu size={120} />
           </div>
           <div className="space-y-2 relative z-10">
             <div className="flex items-center gap-4">
-              <div className="bg-red-700 p-3 rounded-lg red-glow">
-                <Terminal size={28} className="text-white" />
+              <div className="bg-red-700 p-2 rounded-lg red-glow">
+                <Terminal size={20} className="text-white" />
               </div>
               <div>
-                <h1 className="text-4xl md:text-5xl font-black tracking-tighter uppercase italic text-white glow-text">
+                <h1 className="text-2xl md:text-3xl font-black tracking-tighter uppercase italic text-white glow-text">
                   OMNI-OPERATOR <span className="text-red-700">V1.0.0</span>
                 </h1>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   <div className="flex gap-1">
                     {[1, 2, 3].map((i) => (
                       <div
@@ -59,7 +59,7 @@ export default function Home() {
                       />
                     ))}
                   </div>
-                  <p className="text-[10px] text-zinc-400 tracking-[0.6em] uppercase font-black">
+                  <p className="text-[8px] text-zinc-400 tracking-[0.4em] uppercase font-black">
                     Autonomous Content Intelligence Branch
                   </p>
                 </div>
@@ -68,27 +68,27 @@ export default function Home() {
           </div>
 
           <div className="flex gap-4">
-            <div className="bg-zinc-950/80 border border-zinc-800 px-6 py-3 rounded-xl flex items-center gap-4 backdrop-blur-md">
+            <div className="bg-zinc-950/80 border border-zinc-800 px-4 py-2 rounded-lg flex items-center gap-3 backdrop-blur-md">
               <div className="relative">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-ping absolute inset-0" />
-                <div className="w-2 h-2 bg-green-500 rounded-full relative" />
+                <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-ping absolute inset-0" />
+                <div className="w-1.5 h-1.5 bg-green-500 rounded-full relative" />
               </div>
               <div className="flex flex-col">
-                <span className="text-[9px] font-black uppercase tracking-widest text-zinc-500">
+                <span className="text-[8px] font-black uppercase tracking-widest text-zinc-500">
                   Core Engine
                 </span>
-                <span className="text-xs font-bold text-green-500">
+                <span className="text-[10px] font-bold text-green-500">
                   GEMINI_3_FLASH_PREVIEW
                 </span>
               </div>
             </div>
-            <div className="bg-zinc-950/80 border border-zinc-800 px-6 py-3 rounded-xl flex items-center gap-3 backdrop-blur-md">
-              <ShieldCheck className="text-red-600" size={18} />
+            <div className="bg-zinc-950/80 border border-zinc-800 px-4 py-2 rounded-lg flex items-center gap-3 backdrop-blur-md">
+              <ShieldCheck className="text-red-600" size={14} />
               <div className="flex flex-col">
-                <span className="text-[9px] font-black uppercase tracking-widest text-zinc-500">
+                <span className="text-[8px] font-black uppercase tracking-widest text-zinc-500">
                   Node Secure
                 </span>
-                <span className="text-xs font-bold text-zinc-200 uppercase">
+                <span className="text-[10px] font-bold text-zinc-200 uppercase">
                   Active
                 </span>
               </div>
@@ -99,8 +99,8 @@ export default function Home() {
         {/* MAIN LAYOUT */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1 overflow-hidden">
           {/* LEFT: MISSION CONTROL */}
-          <div className="lg:col-span-5 space-y-6 animate-in slide-in-from-left-10 duration-700">
-            <div className="flex items-center justify-between px-2">
+          <div className="lg:col-span-5 flex flex-col overflow-hidden">
+            <div className="flex items-center justify-between px-2 mb-4 shrink-0">
               <h2 className="text-red-700 font-black uppercase text-xs tracking-[0.3em] flex items-center gap-3">
                 <MonitorCheck size={16} /> [ COMMAND_CENTER_STATION ]
               </h2>
@@ -109,31 +109,15 @@ export default function Home() {
               </span>
             </div>
 
-            <div className="relative group">
-              <div className="corner-top-left" />
-              <div className="corner-bottom-right" />
-              <div className="glass-panel p-6 rounded-3xl border border-white/5 group-hover:border-red-900/20 transition-all">
-                <MissionControl onComplete={(data) => setMissionResult(data)} />
+            <div className="flex-1 overflow-y-auto pr-2 space-y-4 custom-scrollbar">
+              <div className="relative group">
+                <div className="corner-top-left" />
+                <div className="corner-bottom-right" />
+                <div className="glass-panel p-4 rounded-2xl border border-white/5 group-hover:border-red-900/20 transition-all">
+                  <MissionControl onComplete={(data) => setMissionResult(data)} />
+                </div>
               </div>
-            </div>
 
-            {/* TACTICAL READOUT (Aesthetic only) */}
-            <div className="glass-panel p-5 rounded-2xl border border-white/5 font-mono text-[9px] text-zinc-600 space-y-2 uppercase leading-none overflow-hidden h-32 opacity-50 relative">
-              <div className="absolute top-0 right-0 p-3 flex gap-1">
-                <div className="w-2 h-2 bg-red-900/20" />
-                <div className="w-2 h-2 bg-red-900/40" />
-                <div className="w-2 h-2 bg-red-900/60" />
-              </div>
-              <p className="">System.Internal.State: IDLE</p>
-              <p className="">Network.Latency: 14ms</p>
-              <p className="">Processor.Load: 4.2%</p>
-              <p className="">Buffer.Status: NULL_POINTER_SAFE</p>
-              <p className="">&gt;&gt; Ready for sequence initiation...</p>
-              <p className="text-red-900">
-                &gt;&gt; Authenticating biometric handshake...
-              </p>
-              <p className="">Encryption.Standard: AES-256-GCM</p>
-              <p className="animate-pulse">_ TERMINAL HEARTBEAT [OK]</p>
             </div>
           </div>
 

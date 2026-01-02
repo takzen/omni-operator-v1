@@ -31,6 +31,7 @@ export default function MissionControl({
   const [jobId, setJobId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [thought, setThought] = useState<string>("SYSTEM_READY_FOR_DEPLOYMENT");
+  const [directives, setDirectives] = useState<string>("");
 
   const thoughts = [
     "ANALYZING_VISUAL_FREQUENCIES...",
@@ -60,6 +61,9 @@ export default function MissionControl({
 
     const formData = new FormData();
     formData.append("file", file);
+    if (directives) {
+      formData.append("directives", directives);
+    }
 
     try {
       const response = await fetch("http://localhost:8000/upload", {
@@ -111,7 +115,7 @@ export default function MissionControl({
     <div className="flex flex-col gap-6">
       {/* SCANNER AREA */}
       <div
-        className={`relative border-2 rounded-[1.5rem] h-48 flex flex-col items-center justify-center p-6 transition-all duration-500 overflow-hidden group/scanner ${file
+        className={`relative border-2 rounded-[1.5rem] h-40 flex flex-col items-center justify-center p-4 transition-all duration-500 overflow-hidden group/scanner ${file
           ? "border-red-600 bg-red-950/5"
           : "border-white/5 bg-black/40 hover:bg-black/60 hover:border-white/10"
           }`}
@@ -175,6 +179,26 @@ export default function MissionControl({
             }
           }
         `}</style>
+      </div>
+
+      {/* OPERATOR DIRECTIVES */}
+      <div className="relative group flex flex-col gap-2">
+        <label className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em] px-2 flex items-center gap-2">
+          <TerminalIcon size={12} className="text-red-900" />
+          Operator_Directives_Input
+        </label>
+        <div className="relative">
+          <textarea
+            value={directives}
+            onChange={(e) => setDirectives(e.target.value)}
+            placeholder="EX: FOCUS_ON_CODE, WRITE_IN_POLISH, AGGRESSIVE_HOOKS, AI_TAKEOVER_TONE..."
+            className="w-full bg-black/40 border border-white/10 rounded-2xl p-4 font-mono text-[11px] text-zinc-200 focus:outline-none focus:border-red-900/50 transition-all placeholder:text-zinc-600 resize-none h-24 custom-scrollbar"
+          />
+          <div className="absolute top-2 right-4 flex gap-1.5 pointer-events-none">
+            <div className="w-1.5 h-1.5 bg-red-900/20 rounded-full" />
+            <div className="w-1.5 h-1.5 bg-red-900/40 rounded-full" />
+          </div>
+        </div>
       </div>
 
       {/* OPERATIONAL TRIGGER */}

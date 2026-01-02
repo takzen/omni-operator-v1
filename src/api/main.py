@@ -5,7 +5,7 @@ import shutil
 import asyncio
 from pathlib import Path
 from dotenv import load_dotenv
-from fastapi import FastAPI, UploadFile, File, BackgroundTasks, HTTPException
+from fastapi import FastAPI, UploadFile, File, BackgroundTasks, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
@@ -65,7 +65,11 @@ async def health_check():
     return {"status": "OPERATIONAL", "engine": "GEMINI 3 FLASH PREVIEW"}
 
 @app.post("/upload")
-async def start_mission(background_tasks: BackgroundTasks, file: UploadFile = File(...)):
+async def start_mission(
+    background_tasks: BackgroundTasks, 
+    file: UploadFile = File(...),
+    directives: str = Form(None)
+):
     """Accepts video file and initiates asynchronous workflow."""
     job_id = str(uuid.uuid4())[:8]
     temp_path = os.path.join(temp_dir, f"{job_id}_{file.filename}")
@@ -79,11 +83,12 @@ async def start_mission(background_tasks: BackgroundTasks, file: UploadFile = Fi
         "job_id": job_id,
         "status": "ANALYZING",
         "video_path": temp_path,
+        "directives": directives,
         "result": None
     }
     
     # Launching "Editing Train" in background
-    background_tasks.add_task(execute_workflow, job_id, temp_path)
+    background_tasks.add_task(execute_workflow, job_id, temp_path, directives)
     
     return {"job_id": job_id, "status": "STARTED"}
 
@@ -96,17 +101,17 @@ async def get_status(job_id: str):
 
 # --- CONDUCTOR WORKFLOW ---
 
-async def execute_workflow(job_id: str, video_path: str):
+async def execute_workflow(job_id: str, video_path: str, directives: str = None):
     """Orchestration of all system modules."""
     try:
         # STEP 1: Multimodal Analysis Gemini 3 Flash Preview
         print(f"LOG [{job_id}]: Starting visual analysis...")
-        analysis_report = await run_analysis(video_path)
+        analysis_report = await run_analysis(video_path, directives)
         
         # STEP 2: Strategy and Posts Generation (Copywriter Agent)
         jobs[job_id]["status"] = "WRITING"
         print(f"LOG [{job_id}]: Gemini generating social media posts...")
-        campaign = await run_copywriting(analysis_report.model_dump())
+        campaign = await run_copywriting(analysis_report.model_dump(), directives)
         
         # STEP 3: Physical FFmpeg Editing (Video Proc)
         jobs[job_id]["status"] = "RENDERING"

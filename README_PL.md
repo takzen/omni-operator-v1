@@ -58,9 +58,10 @@ Content creatorzy tracą **godziny** na żmudną, manualną pracę:
 - **Multimodalnej analizy (Native Vision)** - Gemini "ogląda" wideo przez nowe SDK `google-genai` i rozumie kontekst wizualny + audio bez żadnych pośrednich narzędzi.
 - **Inteligentnego montażu** - Automatyczne wykrywanie najlepszych momentów i generowanie instrukcji dla silnika montażowego.
 - **Agentury Copywriterskiej** - Tworzenie unikalnych postów na TikTok, YouTube i LinkedIn zwalidowanych przez PydanticAI.
-- **Tactical HUD Interface** - Nowoczesny, agentyczny interfejs użytkownika w stylu "Mission Control" z efektami scanlines, CRT i szklanymi panelami.
+- **Dyrektywy Operatora (Human-in-the-loop)** - Wstrzykiwanie instrukcji w czasie rzeczywistym, pozwalające Operatorowi sterować analizą AI i copywritingiem (np. "Pisz po polsku", "Skup się na technicznych detalach").
+- **Agent Dispatcher (MCP)** - Autonomiczna dystrybucja zasobów pod konkretne platformy z wykorzystaniem Model Context Protocol. Inteligentna logistyka plików do dedykowanych folderów.
 - **Vertical Reframing (9:16)** - Automatyczne kadrowanie poziomego wideo do formatu pionowego (Center Crop) zoptymalizowanego pod TikTok i Reels.
-- **Automatyczny Branding** - Dynamiczne nakładanie warstwy wizualnej (Dark Red status bar) sygnującej materiały marką KUŹNI OPERATORÓW.
+- **Profesjonalny Branding** - Automatyczne nakładanie znaku wodnego z logo (`logo.png`) oraz dynamiczne paski stanu dla materiałów klasy premium.
 - **Sovereign RAG Memory** - Każda przeprowadzona analiza i kampania trafia do wektorowej bazy Qdrant, tworząc unikalną bazę wiedzy i doświadczeń systemu.
 
 ---
@@ -81,6 +82,8 @@ graph TD
     subgraph Factory["🎬 Fabryka Mediów"]
         Copywriter -->|Instructions| VideoEngine[⚙️ MoviePy / FFmpeg]
         VideoEngine -->|9:16 Crop & Branding| Storage[💾 Local File System]
+        Storage -->|Logistyka| Dispatcher[🚚 Agent Dispatcher / MCP]
+        Dispatcher -->|Organized Output| Final[📂 Foldery Platform]
     end
 
     API -.->|Tracing & Costs| Langfuse[(📈 Langfuse v2)]

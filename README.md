@@ -58,9 +58,10 @@ Content creators waste **hours** on tedious, manual work:
 - **Multimodal Analysis (Native Vision)** - Gemini "watches" video through the new `google-genai` SDK and understands visual + audio context without any intermediate tools.
 - **Intelligent Editing** - Automatic detection of best moments and generation of instructions for the editing engine.
 - **Copywriting Agency** - Creating unique posts for TikTok, YouTube, and LinkedIn validated by PydanticAI.
-- **Tactical HUD Interface** - Modern, agentic user interface in "Mission Control" style with scanlines, CRT effects, and glass panels.
+- **Operator Directives (Human-in-the-loop)** - Real-time instruction injection that allows the Operator to steer AI analysis and copywriting (e.g., "Write in Polish", "Focus on technical details").
+- **Dispatcher Agent (MCP)** - Autonomous platform-specific asset distribution using Model Context Protocol. Intelligent logistics that move files to dedicated folders based on campaign strategy.
 - **Vertical Reframing (9:16)** - Automatic framing of horizontal video to vertical format (Center Crop) optimized for TikTok and Reels.
-- **Automatic Branding** - Dynamic overlay of visual layer (Dark Red status bar) branding materials with OPERATORS' FORGE mark.
+- **Professional Branding** - Automated logo watermark overlay (`logo.png`) and dynamic status bars for premium-class output.
 - **Sovereign RAG Memory** - Every analysis and campaign conducted goes to the Qdrant vector database, creating a unique knowledge and experience base for the system.
 
 ---
@@ -81,6 +82,8 @@ graph TD
     subgraph Factory["🎬 Media Factory"]
         Copywriter -->|Instructions| VideoEngine[⚙️ MoviePy / FFmpeg]
         VideoEngine -->|9:16 Crop & Branding| Storage[💾 Local File System]
+        Storage -->|Logistics| Dispatcher[🚚 Dispatcher Agent / MCP]
+        Dispatcher -->|Organized Output| Final[📂 Platform Folders]
     end
 
     API -.->|Tracing & Costs| Langfuse[(📈 Langfuse v2)]

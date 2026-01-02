@@ -52,7 +52,7 @@ analyst_agent = Agent(
 
 # 4. OPERATIONAL LOGIC
 @observe(name="Agent_Analyst_Run")
-async def run_analysis(video_path: str) -> VideoAnalysisReport:
+async def run_analysis(video_path: str, directives: str = None) -> VideoAnalysisReport:
     """Sends video to Gemini through new SDK and performs multimodal analysis."""
     
     if not os.path.exists(video_path):
@@ -76,8 +76,12 @@ async def run_analysis(video_path: str) -> VideoAnalysisReport:
     
     # Agent invocation with video passed
     # PydanticAI for GoogleModel accepts list of objects in contents
+    prompt = "Perform full analysis of this video for Shorts editing."
+    if directives:
+        prompt += f"\n\nCRITICAL OPERATOR DIRECTIVES: {directives}"
+        
     result = await analyst_agent.run(
-        "Perform full analysis of this video for Shorts editing.",
+        prompt,
         model_settings={"contents": [{"file_data": {"mime_type": video_file.mime_type, "file_uri": video_file.uri}}]}
     )
     

@@ -59,14 +59,16 @@ copywriter_agent = Agent(
 
 # 4. OPERATIONAL LOGIC
 @observe(name="Agent_Copywriter_Run")
-async def run_copywriting(analysis_data: dict) -> CampaignBrief:
+async def run_copywriting(analysis_data: dict, directives: str = None) -> CampaignBrief:
     """Transforms analytical data into complete post campaign."""
     
     print("LOG: Gemini 3 Flash Preview generating strategy and social media posts...")
     
-    result = await copywriter_agent.run(
-        f"Prepare marketing campaign based on the following analytical data: {analysis_data}"
-    )
+    prompt = f"Prepare marketing campaign based on the following analytical data: {analysis_data}"
+    if directives:
+        prompt += f"\n\nCRITICAL OPERATOR DIRECTIVES: {directives}"
+        
+    result = await copywriter_agent.run(prompt)
     
     # According to version 1.39.0 the result is in .output
     return result.output
