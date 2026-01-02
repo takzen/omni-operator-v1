@@ -7,7 +7,7 @@ postgres_data/
 *.srt
 
 # Output
-test_video.mp4
 output/
 
+# Other
 temp/
