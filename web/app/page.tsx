@@ -320,13 +320,14 @@ export default function Home() {
             {[...Array(12)].map((_, i) => (
               <div
                 key={i}
-                className={`w-0.5 h-4 ${i % 3 === 0 ? "bg-red-700" : "bg-zinc-800"
-                  }`}
+                className={`w-0.5 h-4 ${
+                  i % 3 === 0 ? "bg-red-700" : "bg-zinc-800"
+                }`}
               />
             ))}
           </div>
           <p className="text-[10px] font-black uppercase tracking-[2em] text-zinc-400">
-            Kuźnia Operatorów // Sovereign Content Stack
+            Kuznia Operatorow // Sovereign Content Stack
           </p>
         </footer>
       </main>

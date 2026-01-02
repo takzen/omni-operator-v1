@@ -40,7 +40,7 @@ export default function MissionControl({
     "FFMPEG_BITRATE_STABILIZATION...",
     "RECONSTRUCTING_SCENE_METADATA...",
     "SYNCING_NEURAL_LINK_API...",
-    "VALIDATING_PYDANTIC_SCHEMAS..."
+    "VALIDATING_PYDANTIC_SCHEMAS...",
   ];
 
   React.useEffect(() => {
@@ -66,7 +66,8 @@ export default function MissionControl({
         body: formData,
       });
 
-      if (!response.ok) throw new Error("Neural link rejected source material.");
+      if (!response.ok)
+        throw new Error("Neural link rejected source material.");
 
       const data = await response.json();
       setJobId(data.job_id);
@@ -108,10 +109,11 @@ export default function MissionControl({
     <div className="flex flex-col gap-8">
       {/* SCANNER AREA */}
       <div
-        className={`relative border-2 rounded-[2rem] h-72 flex flex-col items-center justify-center p-10 transition-all duration-500 overflow-hidden group/scanner ${file
-          ? "border-red-600 bg-red-950/5"
-          : "border-white/5 bg-black/40 hover:bg-black/60 hover:border-white/10"
-          }`}
+        className={`relative border-2 rounded-[2rem] h-72 flex flex-col items-center justify-center p-10 transition-all duration-500 overflow-hidden group/scanner ${
+          file
+            ? "border-red-600 bg-red-950/5"
+            : "border-white/5 bg-black/40 hover:bg-black/60 hover:border-white/10"
+        }`}
       >
         {/* Animated Scanner Bar */}
         {status !== "idle" && status !== "completed" && status !== "failed" && (
@@ -123,10 +125,13 @@ export default function MissionControl({
         <div className="relative z-10 flex flex-col items-center gap-6">
           <div className="relative group/icon">
             <Scan
-              className={`w-14 h-14 transition-all duration-500 ${file ? "text-red-600 scale-110 rotate-90" : "text-zinc-800"
-                }`}
+              className={`w-14 h-14 transition-all duration-500 ${
+                file ? "text-red-600 scale-110 rotate-90" : "text-zinc-800"
+              }`}
             />
-            {file && <Fingerprint className="absolute inset-0 m-auto text-red-500 animate-pulse w-6 h-6" />}
+            {file && (
+              <Fingerprint className="absolute inset-0 m-auto text-red-500 animate-pulse w-6 h-6" />
+            )}
           </div>
 
           <div className="text-center space-y-2">
@@ -157,9 +162,17 @@ export default function MissionControl({
 
         <style jsx>{`
           @keyframes scanbar {
-            0% { top: 0; opacity: 0; }
-            50% { opacity: 1; }
-            100% { top: 100%; opacity: 0; }
+            0% {
+              top: 0;
+              opacity: 0;
+            }
+            50% {
+              opacity: 1;
+            }
+            100% {
+              top: 100%;
+              opacity: 0;
+            }
           }
         `}</style>
       </div>
@@ -171,25 +184,33 @@ export default function MissionControl({
           !file ||
           (status !== "idle" && status !== "completed" && status !== "failed")
         }
-        className={`group relative w-full h-20 rounded-2xl font-black text-2xl uppercase tracking-tighter transition-all overflow-hidden ${!file ||
+        className={`group relative w-full h-20 rounded-2xl font-black text-2xl uppercase tracking-tighter transition-all overflow-hidden ${
+          !file ||
           (status !== "idle" && status !== "completed" && status !== "failed")
-          ? "bg-zinc-900/50 text-zinc-700 border border-white/5 cursor-not-allowed"
-          : "bg-white text-black hover:bg-red-700 hover:text-white red-glow active:scale-[0.98]"
-          }`}
+            ? "bg-zinc-900/50 text-zinc-700 border border-white/5 cursor-not-allowed"
+            : "bg-white text-black hover:bg-red-700 hover:text-white red-glow active:scale-[0.98]"
+        }`}
       >
         <span className="relative z-10 flex items-center justify-center gap-4">
-          {status === "idle" && <><Radio size={24} className="animate-pulse" /> Inicjuj Sekwencję</>}
+          {status === "idle" && (
+            <>
+              <Radio size={24} className="animate-pulse" />
+              Initiate Sequence
+            </>
+          )}
           {status === "analyzing" && "GEMINI: NEURAL_MAPPING..."}
           {status === "writing" && "AGENT: CONTENT_GENERATION..."}
           {status === "rendering" && "SYSTEM: FFMPEG_SYNTHESIS..."}
           {status === "completed" && "MISSION_COMPLETE"}
           {status === "failed" && "KRYTYCZNY_BŁĄD"}
 
-          {(status !== "idle" && status !== "completed" && status !== "failed") && (
-            <Activity className="animate-spin w-6 h-6" />
-          )}
+          {status !== "idle" &&
+            status !== "completed" &&
+            status !== "failed" && (
+              <Activity className="animate-spin w-6 h-6" />
+            )}
         </span>
-        {file && status === 'idle' && (
+        {file && status === "idle" && (
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/5 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
         )}
       </button>
@@ -216,10 +237,14 @@ export default function MissionControl({
             </div>
             <div className="flex justify-between text-zinc-600">
               <span>GEMINI_LINK</span>
-              <span className="text-red-700 font-bold animate-pulse">OPTIMIZED</span>
+              <span className="text-red-700 font-bold animate-pulse">
+                OPTIMIZED
+              </span>
             </div>
             <div className="mt-4 pt-4 border-t border-white/5 flex flex-col gap-1">
-              <span className="text-[9px] text-zinc-600 font-black uppercase tracking-widest leading-none">Thought_Stream:</span>
+              <span className="text-[9px] text-zinc-600 font-black uppercase tracking-widest leading-none">
+                Thought_Stream:
+              </span>
               <span className="text-red-500 font-black text-xs animate-pulse italic">
                 {thought}
               </span>
@@ -234,7 +259,11 @@ export default function MissionControl({
                 ) : (
                   <Activity size={14} className="text-red-700 animate-spin" />
                 )}
-                <span className={`font-black tracking-widest ${status === 'failed' ? 'text-red-500' : 'text-zinc-200'}`}>
+                <span
+                  className={`font-black tracking-widest ${
+                    status === "failed" ? "text-red-500" : "text-zinc-200"
+                  }`}
+                >
                   PROTOCOL_STATUS: {status.toUpperCase()}
                 </span>
               </div>
@@ -245,21 +274,27 @@ export default function MissionControl({
                 </div>
               )}
 
-              {status !== 'failed' && (
+              {status !== "failed" && (
                 <div className="w-full h-1 bg-zinc-900 rounded-full overflow-hidden">
-                  <div className={`h-full bg-red-700 transition-all duration-1000 ${status === 'analyzing' ? 'w-1/3' :
-                    status === 'writing' ? 'w-2/3' :
-                      status === 'rendering' ? 'w-[90%]' :
-                        status === 'completed' ? 'w-full' : 'w-0'
-                    }`} />
+                  <div
+                    className={`h-full bg-red-700 transition-all duration-1000 ${
+                      status === "analyzing"
+                        ? "w-1/3"
+                        : status === "writing"
+                        ? "w-2/3"
+                        : status === "rendering"
+                        ? "w-[90%]"
+                        : status === "completed"
+                        ? "w-full"
+                        : "w-0"
+                    }`}
+                  />
                 </div>
               )}
             </div>
           )}
         </div>
       </div>
-
-
     </div>
   );
 }

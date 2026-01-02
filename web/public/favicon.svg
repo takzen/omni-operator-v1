@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Tło (opcjonalne - czarne koło sprawia, że białe logo jest zawsze widoczne) -->
+  <circle cx="50" cy="50" r="48" fill="#000000"/>
+  
+  <!-- RAMKA TAKTYCZNA (Pogrubiona do 8px) -->
+  <path d="M25 15 H15 V25 M75 15 H85 V25 M25 85 H15 V75 M75 85 H85 V75" 
+        fill="none" stroke="white" stroke-width="8" stroke-linecap="square"/>
+
+  <!-- RDZEŃ (Sześciokąt - pogrubiony do 6px) -->
+  <path d="M50 25 L72 38 V62 L50 75 L28 62 V38 Z" 
+        fill="none" stroke="white" stroke-width="6" stroke-linejoin="miter"/>
+  
+  <!-- SYMBOL (</>) - Większy i wyraźniejszy -->
+  <text 
+    x="50" 
+    y="53" 
+    font-family="monospace" 
+    font-size="26" 
+    font-weight="900" 
+    text-anchor="middle" 
+    dominant-baseline="middle" 
+    fill="white">
+    &lt;/&gt;
+  </text>
+</svg>

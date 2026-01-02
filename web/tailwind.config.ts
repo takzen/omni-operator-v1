@@ -8,8 +8,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        brand: "#8B0000", // Twój Dark Red
-        background: "#050505", // Głęboka czerń
+        brand: "#8B0000", // Dark Red
+        background: "#050505", // Deep black
       },
       fontFamily: {
         mono: ["var(--font-geist-mono)", "monospace"],

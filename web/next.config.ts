@@ -1,8 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Właściwość na głównym poziomie (Top-level) zgodnie z nowym standardem
-  // @ts-ignore - uciszamy brak definicji w typach TS przy zachowaniu poprawnego działania runtime
   allowedDevOrigins: [
     "localhost:4000",
     "127.0.0.1:4000",
@@ -10,7 +8,6 @@ const nextConfig: NextConfig = {
     "127.0.0.1:8000",
   ],
 
-  // Obsługa serwowania plików wideo z backendu przez proxy Next.js
   async rewrites() {
     return [
       {
@@ -19,6 +16,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-} as any; // Rzutowanie całego obiektu na any rozwiązuje problem "known properties"
+} as any;
 
 export default nextConfig;
